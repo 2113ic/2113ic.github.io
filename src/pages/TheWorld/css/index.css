@@ -1,0 +1,171 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: var(--ui-dark);
+    background-color: var(--ui-light);
+    font-family: system-ui, —apple-system, Segoe UI, Roboto, Emoji, Helvetica, Arial, sans-serif;
+}
+
+.tw-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+@media (max-width: 768px) {
+    .tw-main {
+        margin: 12px;
+        padding: 0;
+    }
+}
+
+/* -------------------------------------------------------------- */
+
+/* reader area styles */
+.tw-reader-area {
+    height: 150px;
+    line-height: 150px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    transition: border .35s;
+    box-shadow: 0 4px 16px rgba(146, 209, 163, 0.12);
+}
+
+.tw-openfile-input {
+    display: none;
+}
+
+[for="tw-openfile"] {
+    display: inline-block;
+    line-height: 20px;
+    font-size: 18px;
+    white-space: pre;
+    text-align: center;
+    color: var(--ui-blue);
+    vertical-align: middle;
+}
+
+[for="tw-openfile"]::after {
+    font-size: 18px;
+    white-space: pre;
+    content: "或\A将存档拖到此处";
+    color: var(--ui-gray);
+}
+/* reader area styles */
+
+/* -------------------------------------------------------------- */
+
+/* show area styles */
+.tw-show-area {
+    position: relative;
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(146, 209, 163, 0.12);
+}
+
+.tw-show-save_btn {
+    float: right;
+    padding: .5em 1em;
+}
+
+@media (max-width: 768px) {
+    .tw-show-area {
+        margin-top: 12px;
+        padding: 12px;
+    }
+}
+
+[type="radio"],
+.tw-player-detail,
+.tw-role-detail,
+.tw-items-detail {
+    display: none;
+}
+
+[for="tw-show-player"],
+[for="tw-show-role"],
+[for="tw-show-items"] {
+    height: 48px;
+    padding: .5em .75em;
+    line-height: 48px;
+    font-size: 16px;
+    color: var(--ui-gray);
+    border-radius: 20px;
+}
+
+.tw-show-details {
+    padding: 24px 0 0;
+    border-top: 2px solid var(--ui-light);
+}
+
+.tw-show-player:checked ~ .tw-show-details .tw-player-detail,
+.tw-show-role:checked ~ .tw-show-details .tw-role-detail,
+.tw-show-items:checked ~ .tw-show-details .tw-items-detail {
+    display: block
+}
+
+.tw-show-player:checked ~ [for="tw-show-player"],
+.tw-show-role:checked ~ [for="tw-show-role"],
+.tw-show-items:checked ~ [for="tw-show-items"] {
+    color: var(--ui-blue);
+    background-color: var(--ui-list-selected);
+}
+
+
+.tw-player-item > p,
+.tw-role-item > p {
+    margin: 40px 0 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tw-player-item:first-of-type > p,
+.tw-role-item:first-of-type > p {
+    margin-top: 0;
+}
+
+.tw-player-item > p:hover,
+.tw-role-item > p:hover {
+    color: var(--ui-blue);
+}
+
+/* player detail */
+.tw-craftinglevel,
+.tw-role-property {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tw-craftingLevel-item,
+.tw-role-row-property {
+    max-width: 200px;
+    margin-bottom: 10px;
+}
+/* player detail */
+
+
+/* role detail */
+.tw-role-row {
+    margin: 10px 0 30px;
+}
+.tw-role-row > p {
+    margin-bottom: 10px;
+}
+/* role detail */
+
+
+/* show area styles */
+
+/* -------------------------------------------------------------- */
+
+.tw-df {
+    display: flex;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html fl-theme="light">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>默小言</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./src/assets/logo.jpg" type="image/x-icon">
+  <link rel="bookmark" href="./src/assets/logo.jpg">
+
+  <!-- css -->
+  <link rel="stylesheet" href="./node_modules/fleetjs/dist/css/fleet.css">
+  <link rel="stylesheet" href="./src/css/reset.css">
+  <link rel="stylesheet" href="./src/css/base.css">
+  <link rel="stylesheet" href="./src/css/index.css">
+
+</head>
+
+<body>
+
+  <div class="topBg night"></div>
+  <svg class="wavy-line" preserveAspectRatio="none" height="74" viewBox="0 0 1440 74">
+    <path
+      d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z">
+    </path>
+  </svg>
+
+  <div class="main">
+    <div class="main-head" fl="mainHead">
+      <img class="head-avatar night" src="./src/assets/logo.jpg">
+
+      <div class="head-logo">
+        <a href="./index.html">
+          <h1>默小言的空间</h1>
+        </a>
+      </div>
+
+      <div class="head-nav">
+        <ul class="nav-lists">
+          <li class="nav-item active"><a href="index.html">首页</a></li>
+          <li class="nav-item"><a href="./src/pages/archives/archives.html">档案</a></li>
+        </ul>
+      </div>
+
+      <div class="head-menu">
+        <a href="#" class="icon-theme" @click="toggleTheme"></a>
+      </div>
+
+      <div class="head-search">
+        <form action="./src/pages/result/result.html">
+          <div class="search-wrapper">
+            <input class="search-input" type="text" name="q" placeholder="搜索..." autocomplete="off">
+            <button class="search-button" hidden>搜索</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- 文章列表 -->
+      <div class="main-article" fl="mainArticle">
+        <div class="article-lists" $="articleLists">
+          <div class="article-item" $="articleItem">
+            <div class="article-item-time"><span></span></div>
+            <div class="article-item-title"><a href="#"></a></div>
+            <div class="article-item-show"></div>
+            <div class="article-item-tags">
+              <a href="#" class="article-tag"></a>
+            </div>
+            <hr class="hr-twill">
+          </div>
+        </div>
+
+        <div id="article-pagin" f-pagination="articlePagin">
+          <button f-prev>上一页</button>
+          <ul f-pager></ul>
+          <button f-next>下一页</button>
+        </div>
+      </div>
+
+      <!-- 侧边栏 -->
+      <div class="main-sidebar">
+
+        <div class="sidebar-item reading">
+          <div class="sidebar-item-title">我的订阅</div>
+          <div class="sidebar-item-content">
+            <ul class="sidebar-item-lists">
+              <li class="sidebar-item-item">
+                <a target="_blank" href="https://javascriptweekly.com/issues/new">JavaScript weekly</a>
+              </li>
+              <li class="sidebar-item-item">
+                <a target="_blank" href="https://www.zhangxinxu.com/wordpress/">张鑫旭 - wordpress</a>
+              </li>
+              <li class="sidebar-item-item">
+                <a target="_blank" href="https://www.ruanyifeng.com/blog/archives.html">阮一峰的网络日志</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-item tool">
+          <div class="sidebar-item-title">我制作的小工具</div>
+          <div class="sidebar-item-content">
+            <ul class="sidebar-item-lists">
+              <li class="sidebar-item-item">
+                <a target="_blank" href="./src/pages/vocabulary/init.html">我的词汇量</a>
+              </li>
+              <li class="sidebar-item-item"><a href="./src/pages/TheWorld/theWorld.html">The world 存档修改器</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="node_modules/fleetjs/dist/fleet.js"></script>
+    <script src="./src/js/index.js" type="module"></script>
+
+</body>
+
+</html>

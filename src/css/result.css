@@ -1,0 +1,35 @@
+body {
+  background-color: var(--fl-bg-color);
+}
+
+.main {
+  max-width: 1000px;
+  margin: 72px auto;
+  padding: 0 24px;
+  background-color: var(--fl-bg-color);
+}
+
+.main-title h1 {
+  font-weight: bold;
+  font-size: 26px;
+  font-family: serif;
+}
+
+.head-search {
+  float: none;
+  margin: 24px 0;
+  text-align: center;
+}
+.head-search form {
+  display: inline-block;
+}
+.head-search .search-input {
+  color: inherit;
+  width: 300px;
+}
+
+#reslut-pagin {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}/*# sourceMappingURL=result.css.map */

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+  <title>TheWorld-存档修改器</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <link rel="bookmark" href="logo.png">
+
+  <!-- css -->
+  <link rel="stylesheet" href="css/ui.min.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="tw-main">
+
+    <!-- 读取存档区域 -->
+    <div class="tw-reader-area">
+      <label for="tw-openfile" tabindex="0">点击导入存档</label>
+      <input type="file" class="tw-openfile-input" id="tw-openfile" accept=".rpgsave">
+    </div>
+
+    <!-- 显示存档数据区域 -->
+    <div class="tw-show-area">
+
+      <!-- 玩家选项 -->
+      <input type="radio" checked class="tw-show-player" name="tw-show-radio" id="tw-show-player">
+      <label for="tw-show-player">玩家</label>
+
+      <!-- 角色选项 -->
+      <input type="radio" class="tw-show-role" name="tw-show-radio" id="tw-show-role">
+      <label for="tw-show-role">角色</label>
+
+      <!-- 物品选项 -->
+      <input type="radio" class="tw-show-items" name="tw-show-radio" id="tw-show-items">
+      <label for="tw-show-items">物品</label>
+
+      <!-- 下载存档数据 -->
+      <a href="javascript:" type="normal" class="ui-button tw-show-save_btn" role="button">保存修改</a>
+
+      <!-- 存档显示区域的细节内容 -->
+      <div class="tw-show-details">
+
+        <!-- 玩家相关的数据 -->
+        <div class="tw-player-detail">
+          <div class="tw-player-item">
+            <p>软妹币（max:99,999,999）</p>
+            <div class="tw-player-item_content">
+              <input is="ui-input" class="tw-gold" value="">
+            </div>
+          </div>
+
+          <div class="tw-player-item">
+            <p>制作等级（max:99）</p>
+            <div class="tw-player-item_content tw-craftinglevel">
+              <div class="tw-craftingLevel-item">炼金术：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">工程：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">锻造：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">制皮：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              
+              <div class="tw-craftingLevel-item">裁缝：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">珠宝：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">烹饪：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">附魔：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              
+              <div class="tw-craftingLevel-item">符箓：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">炼宝：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">制毒：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+              <div class="tw-craftingLevel-item">制蛊：<input is="ui-input" class="tw-craftingLevel-input" value=""></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 角色相关的数据 -->
+        <div class="tw-role-detail">
+          <div class="tw-role-item">
+            <p class="tw-role-name">小明-屌丝</p>
+            
+            <div class="tw-role-item_content">
+              <div class="tw-role-row">
+                <p class="tw-role-row-title">等级（max:45）</p>
+                
+                <div class="tw-role-row_content">
+                  <input is="ui-input" class="tw-roleLevel-input" value="">
+                </div>
+              </div>
+              <div class="tw-role-row">
+                <p class="tw-role-row-title">属性加成（max:99999）</p>
+                
+                <div class="tw-role-row_content tw-role-property">
+                  <div class="tw-role-row-property">HP：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">MP：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">物攻：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">物防：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">魔攻：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">魔防：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">敏捷：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                  <div class="tw-role-row-property">幸运：<input is="ui-input" class="tw-roleProperty-input" value=""></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 物品相关的数据 -->
+        <div class="tw-items-detail">items</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- javaScript -->
+  <script src="js/all.min.js"></script>
+  <script src="js/lz-string.min.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

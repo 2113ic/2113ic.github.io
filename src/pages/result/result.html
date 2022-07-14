@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html fl-theme="light">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>默小言 - 搜索结果</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../assets/logo.jpg" type="image/x-icon">
+  <link rel="bookmark" href="../../assets/logo.jpg">
+
+  <!-- css -->
+  <link rel="stylesheet" href="../../../node_modules/fleetjs/dist/css/fleet.css">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="./result.css">
+
+</head>
+
+<body>
+
+  <div class="main">
+
+    <div class="head-search">
+      <form action="./result.html">
+        <div class="search-wrapper">
+          <input class="search-input" type="text" name="q" placeholder="搜索..." autocomplete="off">
+          <button class="search-button" hidden>搜索</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="main-title">
+      <h1>搜索结果</h1>
+    </div>
+
+    <div class="main-article" fl="mainArticle">
+      <div class="article-lists" $="articleLists" hidden>
+        <div class="article-item" $="articleItem">
+          <div class="article-item-time"><span></span></div>
+          <div class="article-item-title"><a href="#"></a></div>
+          <div class="article-item-show"></div>
+          <div class="article-item-tags">
+            <a href="#" class="article-tag"></a>
+          </div>
+          <hr class="hr-twill">
+        </div>
+      </div>
+
+      <div class="article-null-tip" $="nullTip">换个关键字试试？</div>
+
+      <div id="reslut-pagin" f-pagination="reslutPagin">
+        <button f-prev>上一页</button>
+        <ul f-pager></ul>
+        <button f-next>下一页</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- javascript -->
+  <script src="../../../node_modules/fleetjs/dist/fleet.js"></script>
+  <script src="result.js" type="module"></script>
+
+</body>
+
+</html>
