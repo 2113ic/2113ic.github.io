@@ -1,37 +1,27 @@
-import Article from '../../components/Article.js';
+import '/src/js/initTheme.js'
+import Article from '/src/components/Article.js';
 
-const article = new Article('mainArticle');
-initTheme();
-search();
+new Article({
+    fl: 'mainArticle',
+    pagin: 'reslutPagin',
+    data: function search() {
+        const q = this.$getUrlParam("q")?.toLocaleLowerCase();
+        const datas = this.$getJsonData('/article.json');
 
-function initTheme() {
-  const nowTheme = localStorage.getItem('fl-theme');
-  const html = document.documentElement;
-  const args = ['fl-theme', nowTheme || 'light'];
-
-  html.setAttribute(...args);
-  localStorage.setItem(...args);
-}
-
-function search() {
-    const q = article.$getUrlParam("q")?.toLocaleLowerCase();
+        return datas.then(data => {
+            const reslut = data.filter(item => (
+                item.title.toLocaleLowerCase().includes(q) ||
+                item.tags.includes(q)
+            ));
     
-    article.articleData.then(data => {
-        const reslut = data.filter(item => item.title.toLocaleLowerCase().includes(q));
-
-        if (reslut.length > 0) {
-            new Fleet.Pagination({
-                el: "reslutPagin",
-                limit: 7,
-                total: reslut.length,
-                jump: article.putArticleData.bind(article, reslut)
-            });
-
-            article.$articleLists.hidden = false;
-            article.$nullTip.hidden = true;
-        } else {
-            article.$nullTip.hidden = false;
-            article.$articleLists.hidden = true;
-        }
-    });
-}
+            if (reslut.length > 0) {
+                this.$articleLists.hidden = false;
+                this.$nullTip.hidden = true;
+                return reslut;
+            }
+            this.$nullTip.hidden = false;
+            this.$articleLists.hidden = true;
+            return reslut;
+        });
+    }
+});

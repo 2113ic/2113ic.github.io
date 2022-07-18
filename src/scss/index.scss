@@ -38,14 +38,12 @@
   color: inherit;
   list-style-type: disc;
   line-height: 22px;
-  transition: color 0.35s;
+  transition: color .35s;
 
   &:hover a {
     color: var(--fl-primary);
   }
 }
-
-
 
 
 /* -------------------------------------------------------- */

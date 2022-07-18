@@ -28,8 +28,13 @@ body {
   width: 300px;
 }
 
-#reslut-pagin {
+.reslut-pagin {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.article-null-tip {
+  padding: 24px;
+  text-align: center;
 }/*# sourceMappingURL=result.css.map */

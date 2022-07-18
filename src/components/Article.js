@@ -1,16 +1,32 @@
 class Article extends Fleet {
 
-  $init() {
-    this.articleData = this.$getJsonData(location.origin + '/article.json');
+  constructor({fl, pagin, url, data}) {
+    super(fl);
+
+    this.init(pagin, url, data);
   }
 
-  initPage() {
+  init(pagin, url, data) {
+
+    if (url) {
+      this.articleData = this.$getJsonData(url);
+    }
+
+    if (data) {
+      this.articleData = data.call(this);
+    }
+
+    this.initPage(pagin);
+  }
+
+  initPage(pagin) {
     this.articleData.then(data => {
       new Fleet.Pagination({
-        el: "articlePagin",
+        el: pagin,
         limit: 7,
         total: data.length,
-        jump: this.putArticleData.bind(this, data)
+        jump: this.putArticleData.bind(this, data),
+        singlePageHide: true
       });
     });
   };

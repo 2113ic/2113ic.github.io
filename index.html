@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html fl-theme="light">
+<html data-theme="dark">
 
 <head>
 
   <meta charset="UTF-8">
-  <title>默小言</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>默小言</title>
   <link rel="shortcut icon" href="./src/assets/logo.jpg" type="image/x-icon">
   <link rel="bookmark" href="./src/assets/logo.jpg">
 
   <!-- css -->
-  <link rel="stylesheet" href="./node_modules/fleetjs/dist/css/fleet.css">
-  <link rel="stylesheet" href="./src/css/reset.css">
+  <link rel="stylesheet" href="/node_modules/fleetjs/dist/css/fleet.css">
   <link rel="stylesheet" href="./src/css/base.css">
   <link rel="stylesheet" href="./src/css/index.css">
 
@@ -28,7 +27,7 @@
   </svg>
 
   <div class="main">
-    <div class="main-head" fl="mainHead">
+    <div class="main-head" data-fleet="mainHead">
       <img class="head-avatar night" src="./src/assets/logo.jpg">
 
       <div class="head-logo">
@@ -39,7 +38,7 @@
 
       <div class="head-nav">
         <ul class="nav-lists">
-          <li class="nav-item active"><a href="index.html">首页</a></li>
+          <li class="nav-item active"><a href="./index.html">首页</a></li>
           <li class="nav-item"><a href="./src/pages/archives/archives.html">档案</a></li>
         </ul>
       </div>
@@ -61,7 +60,7 @@
     <div class="main-body">
 
       <!-- 文章列表 -->
-      <div class="main-article" fl="mainArticle">
+      <div class="main-article" data-fleet="mainArticle">
         <div class="article-lists" $="articleLists">
           <div class="article-item" $="articleItem">
             <div class="article-item-time"><span></span></div>
@@ -74,10 +73,10 @@
           </div>
         </div>
 
-        <div id="article-pagin" f-pagination="articlePagin">
-          <button f-prev>上一页</button>
-          <ul f-pager></ul>
-          <button f-next>下一页</button>
+        <div id="article-pagin" data-pagination="articlePagin">
+          <button data-prev>上一页</button>
+          <ul data-pager></ul>
+          <button data-next>下一页</button>
         </div>
       </div>
 
@@ -102,7 +101,7 @@
         </div>
 
         <div class="sidebar-item tool">
-          <div class="sidebar-item-title">我制作的小工具</div>
+          <div class="sidebar-item-title">小工具</div>
           <div class="sidebar-item-content">
             <ul class="sidebar-item-lists">
               <li class="sidebar-item-item">
@@ -116,7 +115,7 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="node_modules/fleetjs/dist/fleet.js"></script>
+    <script src="/node_modules/fleetjs/dist/fleet.js"></script>
     <script src="./src/js/index.js" type="module"></script>
 
 </body>

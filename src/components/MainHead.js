@@ -1,8 +1,8 @@
 class MainHead extends Fleet {
   toggleTheme() {
     const html = document.documentElement;
-    const nowTheme = html.getAttribute('fl-theme');
-    const args = (nowTheme === 'light') ? ['fl-theme', 'dark'] : ['fl-theme', 'light'];
+    const nowTheme = html.getAttribute('data-theme');
+    const args = (nowTheme === 'light') ? ['data-theme', 'dark'] : ['data-theme', 'light'];
 
     html.setAttribute(...args);
     localStorage.setItem(...args);
