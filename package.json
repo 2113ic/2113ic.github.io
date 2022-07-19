@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/2113ic/2113ic.github.io#readme",
   "dependencies": {
-    "fleetjs": "0.1.3"
+    "fleetjs": "0.1.6"
   }
 }

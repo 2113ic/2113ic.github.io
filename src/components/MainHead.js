@@ -1,5 +1,6 @@
 class MainHead extends Fleet {
-  toggleTheme() {
+  toggleTheme(e) {
+    e.preventDefault();
     const html = document.documentElement;
     const nowTheme = html.getAttribute('data-theme');
     const args = (nowTheme === 'light') ? ['data-theme', 'dark'] : ['data-theme', 'light'];

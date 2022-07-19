@@ -1,0 +1,138 @@
+body {
+  display: flex;
+}
+
+.main {
+  --shadow-color: 0deg 0% 63%;
+
+  width: 1000px;
+  padding: 24px;
+  margin: 52px auto;
+  border-radius: 8px;
+  background-color: var(--fl-card-bg-color);
+  box-shadow: 
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+}
+
+.main-head {
+  text-align: right;
+  line-height: 32px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--fl-border-color);
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 0 12px;
+  border-radius: .25em;
+}
+
+.tab-item.active {
+  color: var(--fl-primary);
+  background-color: var(--fl-primary-seleced);
+}
+
+
+// ----------------------------------------------------------
+.body-detail {
+  display: none;
+  padding: 16px 0;
+}
+
+.body-detail.active {
+  display: block;
+}
+
+
+// ----------------------------------------------------------
+.record-form {
+  margin: 40px auto;
+  height: 36px;
+  text-align: center;
+
+  form, .record-btn, input {
+    height: 100%;
+  }
+
+  input {
+    margin: 12px 0;
+  }
+}
+
+// ----------------------------------------------------------
+.word-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.word-item:last-child .word-item-line::after {
+  display: none;
+}
+
+.word-item-line {
+  float: left;
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 42px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 10px; height: 10px;
+    margin: 7px auto 0;
+    border-radius: 50%;
+    background-color: var(--fl-border-color);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 7px; bottom: 0; left: 20px;
+    width: 2px;
+    margin: 0 auto;
+    background-color: var(--fl-border-color);
+  }
+}
+
+.word-item-wrapper {
+  padding-left: 42px;
+  line-height: 28px;
+
+  .word-item-title {
+    transition: color .2s;
+
+    &:hover {
+      color: var(--fl-primary);
+    }
+  }
+
+  .word-item-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 12px 0;
+  }
+
+  .word {
+    display: inline-block;
+    padding: 0 12px;
+    margin: 4px;
+    font-size: 16px;
+    border-bottom: 1px dashed var(--fl-border-color);
+    transition: border-bottom-color .2s;
+
+    &:hover {
+      color: var(--fl-primary);
+      border-bottom: 1px solid var(--fl-primary);
+    }
+  }
+}
+
+
+// ----------------------------------------------------------
+.word-list-pagin {
+  display: flex;
+  justify-content: center;
+}

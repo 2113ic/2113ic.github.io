@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的词汇量</title>
+
+  <link rel="shortcut icon" href="/src/assets/logo.jpg" type="image/x-icon">
+  <link rel="bookmark" href="/src/assets/logo.jpg">
+  <link rel="stylesheet" href="/node_modules/fleetjs/dist/css/fleet.css">
+  <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="main-head" data-tabs="HeadTab">
+      <a class="tab-item" data-tab="review" href="#review">复习</a>
+      <a class="tab-item active" data-tab="record" href="#record">记录</a>
+    </div>
+    <div class="main-body">
+      <div class="body-detail review-content" data-filter="review">复习页面</div>
+      <div class="body-detail record-content active" data-filter="record">
+        <div class="record-form" data-fleet="RecordForm">
+          <form>
+            <input type="text" placeholder="单词" $="word">
+            <input type="text" placeholder="解释" $="exp">
+            <button type="submit" class="record-btn primary" @click="addWord">记录</button>
+          </form>
+        </div>
+        <ul class="word-list" data-fleet="WordList" hidden>
+          <li class="word-item">
+            <div class="word-item-line"></div>
+            <div class="word-item-wrapper">
+              <div class="word-item-title"><a href="#" @click="addWorldToReviewList">2022-7-19</a></div>
+              <div class="word-item-content" @click="showWordExp">
+                <a href class="word"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="word-list-pagin" data-pagination="WordListPagin">
+          <button data-prev>上一页</button>
+          <ul data-pager></ul>
+          <button data-next>下一页</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="/node_modules/fleetjs/dist/fleet.js"></script>
+  <script src="./index.js" type="module"></script>
+
+</body>
+
+</html>
