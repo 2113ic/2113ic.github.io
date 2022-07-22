@@ -1,11 +1,6 @@
 /* base */
 
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .topBg {
   position: relative;
   z-index: -1;
@@ -27,12 +22,6 @@ a {
   filter: brightness(80%) grayscale(20%) contrast(1.2);
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 
 /* -------------------------------------------------------- */
 .main-head {
@@ -45,9 +34,9 @@ ul {
   line-height: 52px;
   margin: 0 auto;
   padding: 0 24px;
-  background-color: var(--fl-bg-color);
   border: 0;
   border-bottom: 1px dashed var(--fl-border-color);
+  background-color: var(--fl-bg-color);
   transition: border .2s;
 }
 

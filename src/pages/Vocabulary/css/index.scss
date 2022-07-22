@@ -1,5 +1,6 @@
 body {
   display: flex;
+  justify-content: center;
 }
 
 .main {
@@ -7,10 +8,10 @@ body {
 
   width: 1000px;
   padding: 24px;
-  margin: 52px auto;
+  margin: 52px 24px;
   border-radius: 8px;
   background-color: var(--fl-card-bg-color);
-  box-shadow: 
+  box-shadow:
     0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
     0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
     1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
@@ -48,12 +49,17 @@ body {
 
 // ----------------------------------------------------------
 .record-form {
-  margin: 40px auto;
-  height: 36px;
+  padding: 40px 0;
+  // height: 36px;
   text-align: center;
 
-  form, .record-btn, input {
+  form,
+  input {
     height: 100%;
+  }
+
+  .record-btn {
+    padding: .5em 1em;
   }
 
   input {
@@ -67,40 +73,44 @@ body {
   overflow: hidden;
 }
 
-.word-item:last-child .word-item-line::after {
+.word-item:last-child .word-item-wrapper::before {
   display: none;
 }
 
-.word-item-line {
-  float: left;
+.word-item-dot.active {
+  background-color: var(--fl-primary);
+}
+
+.word-item-dot {
   position: absolute;
-  top: 0; bottom: 0;
-  width: 42px;
+  top: 0; bottom: 0; left: 16px;
 
-  &::before {
-    content: '';
-    display: block;
-    width: 10px; height: 10px;
-    margin: 7px auto 0;
-    border-radius: 50%;
-    background-color: var(--fl-border-color);
-  }
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 8px auto 0;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 7px; bottom: 0; left: 20px;
-    width: 2px;
-    margin: 0 auto;
-    background-color: var(--fl-border-color);
-  }
+  border-radius: 50%;
+  background-color: var(--fl-border-color);
 }
 
 .word-item-wrapper {
   padding-left: 42px;
   line-height: 28px;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    margin: 0 auto;
+    background-color: var(--fl-border-color);
+  }
+
   .word-item-title {
+    font-weight: bold;
     transition: color .2s;
 
     &:hover {
@@ -119,13 +129,14 @@ body {
     display: inline-block;
     padding: 0 12px;
     margin: 4px;
-    font-size: 16px;
-    border-bottom: 1px dashed var(--fl-border-color);
-    transition: border-bottom-color .2s;
+    font-size: 14px;
+    border: 1px dashed var(--fl-border-color);
+    border-radius: .5em;
+    transition: border .2s;
 
     &:hover {
       color: var(--fl-primary);
-      border-bottom: 1px solid var(--fl-primary);
+      border: 1px solid var(--fl-primary);
     }
   }
 }
@@ -135,4 +146,22 @@ body {
 .word-list-pagin {
   display: flex;
   justify-content: center;
+}
+
+
+// ----------------------------------------------------------
+@media (max-width: 480px) {
+  .main {
+    margin: 52px 12px;
+    padding: 12px;
+  }
+
+  .record-form {
+    padding: 24px 0;
+
+    input {
+      display: block;
+      margin: 12px auto;
+    }
+  }
 }
