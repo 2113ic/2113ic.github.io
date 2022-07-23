@@ -2,7 +2,6 @@ export default class Review extends Fleet {
   
   $init() {
     this.initData();
-    this.nextShow();
     this.Msg = new Fleet.LightTip();
   }
 
@@ -11,13 +10,19 @@ export default class Review extends Fleet {
 
     this.reviews = JSON.parse(reivewStr) || {};
     this.dates = Object.keys(this.reviews);
-    const len = this.dates.length;
-    this.model = 0;
-    this.cursor = {
-      date: this.dates[len - 1],
-      dateLenght: len - 1,
-      i: 0
-    };
+
+    if (this.dates.length > 0) {
+      const len = this.dates.length;
+
+      this.model = 0;
+      this.cursor = {
+        date: this.dates[len - 1],
+        dateLenght: len - 1,
+        i: 0
+      };
+
+      this.nextShow();
+    }
   }
 
   nextShow() {
@@ -73,14 +78,15 @@ export default class Review extends Fleet {
     const values = this.reviews[date];
 
     if (i === values.length) {
-      let len = --this.cursor.dateLenght;
+      let len = this.cursor.dateLenght;
       
-      date = this.cursor.date = this.dates[len];
-      i = this.cursor.i = 0;
-
       if (len === 0) {
         this.cursor.dateLenght = this.dates.length;
       }
+      len = --this.cursor.dateLenght;
+
+      date = this.cursor.date = this.dates[len];
+      i = this.cursor.i = 0;
     }
 
     return this.reviews[date][this.cursor.i++].split('@');

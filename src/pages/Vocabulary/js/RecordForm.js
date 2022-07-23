@@ -128,6 +128,9 @@ export default class RecordForm extends Fleet {
 
 
   isWordRepeat(word, exp) {
+    if (localStorage.getItem('recordData') === '{}') {
+      return false;
+    }
     const date = this.wordList
       .elm.$('.word-item-title a')
       .innerHTML;
