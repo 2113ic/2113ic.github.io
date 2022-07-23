@@ -8,7 +8,7 @@ body {
 
   width: 1000px;
   padding: 24px;
-  margin: 52px 24px;
+  margin: 52px 24px 24px;
   border-radius: 8px;
   background-color: var(--fl-card-bg-color);
   box-shadow:
@@ -39,7 +39,7 @@ body {
 // ----------------------------------------------------------
 .body-detail {
   display: none;
-  padding: 16px 0;
+  padding: 16px 0 0;
 }
 
 .body-detail.active {
@@ -50,7 +50,6 @@ body {
 // ----------------------------------------------------------
 .record-form {
   padding: 40px 0;
-  // height: 36px;
   text-align: center;
 
   form,
@@ -83,7 +82,9 @@ body {
 
 .word-item-dot {
   position: absolute;
-  top: 0; bottom: 0; left: 16px;
+  top: 0;
+  bottom: 0;
+  left: 16px;
 
   display: block;
   width: 10px;
@@ -150,9 +151,35 @@ body {
 
 
 // ----------------------------------------------------------
+.review-content.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 179px);
+}
+
+.review-head {
+  text-align: right;
+}
+
+.review-body {
+  margin-bottom: 128px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 22px;
+  color: #7f8c8d;
+  cursor: default;
+}
+
+.review-foot input {
+  width: 100%;
+  font-size: 18px;
+}
+
+// ----------------------------------------------------------
 @media (max-width: 480px) {
   .main {
-    margin: 52px 12px;
+    margin: 52px 12px 24px;
     padding: 12px;
   }
 

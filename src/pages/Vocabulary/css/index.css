@@ -7,7 +7,7 @@ body {
   --shadow-color: 0deg 0% 63%;
   width: 1000px;
   padding: 24px;
-  margin: 52px 24px;
+  margin: 52px 24px 24px;
   border-radius: 8px;
   background-color: var(--fl-card-bg-color);
   box-shadow: 0.3px 0.5px 0.7px hsl(var(--shadow-color)/0.34), 0.4px 0.8px 1px -1.2px hsl(var(--shadow-color)/0.34), 1px 2px 2.5px -2.5px hsl(var(--shadow-color)/0.34);
@@ -33,7 +33,7 @@ body {
 
 .body-detail {
   display: none;
-  padding: 16px 0;
+  padding: 16px 0 0;
 }
 
 .body-detail.active {
@@ -127,9 +127,34 @@ body {
   justify-content: center;
 }
 
+.review-content.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 179px);
+}
+
+.review-head {
+  text-align: right;
+}
+
+.review-body {
+  margin-bottom: 128px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 22px;
+  color: #7f8c8d;
+  cursor: default;
+}
+
+.review-foot input {
+  width: 100%;
+  font-size: 18px;
+}
+
 @media (max-width: 480px) {
   .main {
-    margin: 52px 12px;
+    margin: 52px 12px 24px;
     padding: 12px;
   }
   .record-form {

@@ -17,19 +17,62 @@
 <body>
 
   <div class="main">
+
+    <!-- main-head -->
     <div class="main-head" data-tabs="HeadTab">
-      <a class="tab-item" data-tab="review" href="#review" accesskey="v">复习</a>
-      <a class="tab-item active" data-tab="record" href="#record" accesskey="c">记录</a>
+      <a 
+        class="tab-item active" 
+        data-tab="review" 
+        href="#review" 
+        accesskey="v"
+      >复习</a>
+      <a 
+        class="tab-item" 
+        data-tab="record" 
+        href="#record" 
+        accesskey="c"
+        >记录</a>
     </div>
+
+    <!-- main-body -->
     <div class="main-body">
-      <div class="body-detail review-content" data-filter="review">复习页面</div>
-      <div class="body-detail record-content active" data-filter="record">
+
+      <!-- review -->
+      <div 
+        class="body-detail review-content active" 
+        data-filter="review" 
+        data-fleet="review"
+      >
+        <div class="review-head">
+          <select name="model" @change="changeModel">
+            <option value="0">默认模式</option>
+            <option value="1">单词模式</option>
+            <option value="2">解释模式</option>
+          </select>
+        </div>
+        <div class="review-body" @click="nextShow">这里空空如也</div>
+        <div class="review-foot">
+          <input 
+            type="text" 
+            name="input" 
+            accesskey="q"
+            @keyup="checkInput"
+          >
+        </div>
+      </div>
+
+      <!-- recird -->
+      <div class="body-detail" data-filter="record">
 
         <div class="record-form" data-fleet="RecordForm">
           <form>
             <input type="text" placeholder="单词" $="word" accesskey="w">
             <input type="text" placeholder="解释" $="exp" accesskey="s">
-            <button type="submit" class="record-btn primary" @click="addWord">记录</button>
+            <button 
+              type="submit" 
+              class="record-btn primary" 
+              @click="addWord"
+            >记录</button>
           </form>
         </div>
 
@@ -38,7 +81,11 @@
             <div class="word-item-dot"></div>
             <div class="word-item-wrapper">
               <div class="word-item-title">
-                <a class="title-text" href @click="addWorldToReviewList">2022-7-19</a>
+                <a 
+                  href 
+                  class="title-text" 
+                  @click="addWorldToReviewList"
+                >2022-7-19</a>
               </div>
               <div class="word-item-content" @click="showWordExp">
                 <a href class="word"></a>
