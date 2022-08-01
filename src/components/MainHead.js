@@ -1,4 +1,4 @@
-class MainHead extends Fleet {
+export default class MainHead extends Fleet {
   toggleTheme(e) {
     e.preventDefault();
     const html = document.documentElement;
@@ -9,5 +9,3 @@ class MainHead extends Fleet {
     localStorage.setItem(...args);
   }
 }
-
-export default MainHead;

@@ -102,7 +102,7 @@ export default class Review extends Fleet {
     let target = e.target;
     const hideData = this.elm.$('.review-body').hideData;
 
-    if (target.value.trim() === hideData) {
+    if (hideData.split('、').includes(target.value.trim())) {
       target.value = '';
       this.nextShow();
       return;

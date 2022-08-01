@@ -29,24 +29,20 @@
   <div class="main">
     <div class="main-head" data-fleet="mainHead">
       <img class="head-avatar night" src="./src/assets/logo.jpg">
-
       <div class="head-logo">
         <a href="./index.html">
           <h1>默小言的空间</h1>
         </a>
       </div>
-
       <div class="head-nav">
         <ul class="nav-lists">
           <li class="nav-item active"><a href="./index.html">首页</a></li>
           <li class="nav-item"><a href="./src/pages/archives/archives.html">档案</a></li>
         </ul>
       </div>
-
       <div class="head-menu">
-        <a class="icon-theme" @click="toggleTheme"></a>
+        <a href class="icon-theme" @click="toggleTheme"></a>
       </div>
-
       <div class="head-search">
         <form action="./src/pages/result/result.html">
           <div class="search-wrapper">
@@ -58,22 +54,30 @@
     </div>
 
     <div class="main-body">
-
       <!-- 文章列表 -->
       <div class="main-article" data-fleet="mainArticle">
         <div class="article-lists" $="articleLists">
-          <div class="article-item" $="articleItem">
-            <div class="article-item-time"><span></span></div>
-            <div class="article-item-title"><a href="#"></a></div>
-            <div class="article-item-show"></div>
-            <div class="article-item-tags">
-              <a href="#" class="article-tag"></a>
+          <div class="article-item" $="articleItem" hidden>
+            <div class="article-item-time"><span><!-- 发布日期 --></span></div>
+            <div class="article-item-title">
+              <a href target="_blank"><!-- 标题 --></a>
             </div>
-            <hr class="hr-twill">
+            <div class="article-item-show">
+              <div class="article-item-desc"><!-- 描述 --></div>
+              <img class="article-item-cover night" src="/src/assets/logo.jpg" alt="cover">
+            </div>
+            <div class="article-item-foot">
+              <div class="article-publish">
+                <a href><!-- 发布于 --></a>
+              </div>
+              <div class="article-item-tags">
+                <a href="#" class="article-tag"><!-- 标签 --></a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div id="article-pagin" data-pagination="articlePagin">
+        <div class="article-pagin" data-pagination="articlePagin">
           <button data-prev>上一页</button>
           <ul data-pager></ul>
           <button data-next>下一页</button>
@@ -113,11 +117,11 @@
         </div>
       </div>
     </div>
-
   </div>
   
     <!-- JavaScript -->
     <script src="/node_modules/fleetjs/dist/fleet.js"></script>
+    <script src="/src/api/ripple-min.js"></script>
     <script src="./src/js/index.js" type="module"></script>
 
 </body>

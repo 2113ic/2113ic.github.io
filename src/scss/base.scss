@@ -7,7 +7,7 @@
   height: 560px;
   margin-bottom: -72px;
   background: center / cover no-repeat;
-  background-image: url(/src/assets/bg/bg-1.jpg);
+  background-image: url(/src/assets/bg/bg-1.webp);
 }
 
 .wavy-line {
@@ -150,7 +150,7 @@
     padding-bottom: 3px;
     border-bottom: 1px dashed var(--fl-border-color);
     transition: border 0.35s, color 0.35s;
-
+    
     &:hover {
       color: var(--fl-primary);
       border-bottom: 1px solid;
@@ -159,23 +159,52 @@
 }
 
 .article-item-show {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  line-height: 28px;
+  overflow: hidden;
+
+  .article-item-cover {
+    width: 144px;
+    max-height: 100px;
+    margin-left: 20px;
+  }
+}
+
+.article-item-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   line-height: 28px;
 }
 
-.article-item-tags {
-  text-align: right;
-  line-height: 28px;
+.article-publish {
+
+  a {
+    border-bottom: 1px dashed var(--fl-border-color);
+
+    &:hover {
+      color: var(--fl-primary);
+    }
+  }
+
+  &::before {
+    content: '发布在';
+    padding-right: 8px;
+    color: var(--fl-gary);
+  }
 }
 
 .article-tag {
-  padding: 3px 8px;
-  margin: 0 4px;
+  padding: 2px 6px;
+  margin: 0 2px;
   font-size: 12px;
   text-transform: uppercase;
   vertical-align: -.5ex;
   border-radius: 4px;
   border: 1px solid var(--fl-border-color);
-
+  
   &:hover {
     color: var(--fl-primary);
     border-style: solid;
@@ -188,10 +217,11 @@
   background: repeating-linear-gradient(135deg, #a2a9b6 0px, #a2a9b6 1px, transparent 1px, transparent 6px);
 }
 
-#article-pagin {
+.article-pagin {
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
 }
 
 
