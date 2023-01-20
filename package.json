@@ -1,0 +1,20 @@
+{
+  "name": "2113ic.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/vue": "^1.2.2",
+    "astro": "^1.9.2",
+    "vue": "^3.2.30"
+  }
+}
