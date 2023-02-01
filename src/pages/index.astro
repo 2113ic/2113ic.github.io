@@ -2,11 +2,19 @@
 import Layout from '../layouts/layout.astro'
 import '../styles/theme.scss'
 import '../styles/index.scss'
+import CONFIG from '../config'
 
 // Components
 import ToggleTheme from '../components/toggle-theme.vue'
+import FindMe from '../components/find-me.vue'
+
 ---
 
 <Layout>
   <ToggleTheme client:only="vue" />
+  <header>
+    <h1 class="greeting">{CONFIG.name}</h1>
+    <div class="info">{CONFIG.info}</div>
+    <FindMe />
+  </header>
 </Layout>
