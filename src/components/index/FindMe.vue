@@ -1,5 +1,5 @@
 <script setup>
-import CONFIG from '../config'
+import CONFIG from '@/config'
 
 const data = CONFIG.findme
 </script>

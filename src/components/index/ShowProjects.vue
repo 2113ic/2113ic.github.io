@@ -1,6 +1,6 @@
 <script setup>
-import CONFIG from '../config'
-import HeadLine from './head-line.vue'
+import HeadLine from './HeadLine.vue'
+import CONFIG from '@/config'
 
 const data = CONFIG.projects
 </script>

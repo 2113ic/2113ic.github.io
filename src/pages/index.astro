@@ -1,20 +1,21 @@
 ---
-import Layout from '../layouts/layout.astro'
-import CONFIG from '../config'
-import '../styles/index.scss'
+import DefaultLayout  from '../layouts/DefaultLayout.astro'
+import ToggleTheme    from '@components/ToggleTheme.vue'
+import FindMe         from '@components/index/FindMe.vue'
+import ShowProjects   from '@components/index/ShowProjects.vue'
+import ShowBlogs      from '@components/index/ShowBlogs.vue'
 
-// Components
-import ToggleTheme from '../components/toggle-theme.vue'
-import FindMe from '../components/find-me.vue'
-import ShowProjects from '../components/show-projects.vue'
-import ShowBlogs from '../components/show-blogs.vue'
+import CONFIG from '@/config'
+import '@styles/index.scss'
+
+const { name, info, title } = CONFIG
 ---
 
-<Layout>
+<DefaultLayout title={title}>
   <ToggleTheme client:only="vue" />
   <header>
-    <h1 class="greeting">{CONFIG.name}</h1>
-    <div class="info">{CONFIG.info}</div>
+    <h1 class="greeting">{name}</h1>
+    <div class="info">{info}</div>
     <FindMe />
   </header>
 
@@ -22,4 +23,4 @@ import ShowBlogs from '../components/show-blogs.vue'
     <ShowProjects />
     <ShowBlogs />
   </main>
-</Layout>
+</DefaultLayout>

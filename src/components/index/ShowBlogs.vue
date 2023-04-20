@@ -1,6 +1,6 @@
 <script setup>
-import CONFIG from '../config'
-import headLine from './head-line.vue'
+import headLine from './HeadLine.vue'
+import CONFIG from '@/config'
 
 const { articles, showNum } = CONFIG.blogs
 const sorted = articles.sort((a, b) => b.time - a.time)
@@ -12,10 +12,11 @@ function formatDate(time) {
   const m = date.getMonth() + 1
   const d = date.getDay()
 
-  function patchDate(num) {
-    return num < 10 ? `0${num}` : num
-  }
   return [y, m, d].map((item) => patchDate(item)).join('-')
+}
+
+function patchDate(num) {
+  return num < 10 ? `0${num}` : num
 }
 </script>
 

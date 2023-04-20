@@ -1,5 +1,5 @@
 ---
-import CONFIG from '../config'
+const { title } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ import CONFIG from '../config'
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
-    <title>{CONFIG.title}</title>
+    <title>{title}</title>
   </head>
   <body>
     <slot />
