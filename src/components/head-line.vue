@@ -35,13 +35,13 @@ defineProps({
   justify-content: space-between;
 
   .svg-more {
-    color: var(--font-color-4);
+    color: var(--font-subtitle-color);
     vertical-align: bottom;
     cursor: pointer;
     transition: color 0.3s;
 
     &:hover {
-      color: var(--font-color-2);
+      color: var(--font-color);
     }
   }
 }

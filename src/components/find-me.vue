@@ -26,10 +26,10 @@ const data = CONFIG.findme
     padding: 8px 14px;
     margin: 10px 10px 0 0;
     border-radius: 6px;
-    background-color: var(--bg-color-3);
+    background-color: var(--hover-color);
 
     &:hover {
-      color: var(--white);
+      color: #fff;
       background-color: var(--bgColor, #343438);
     }
   }

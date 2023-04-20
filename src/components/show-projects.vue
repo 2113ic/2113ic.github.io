@@ -33,7 +33,7 @@ const data = CONFIG.projects
 }
 
 .summary {
-  color: var(--font-color-4);
+  color: var(--font-subtitle-color);
   font-size: 0.875rem;
 }
 
@@ -48,11 +48,12 @@ const data = CONFIG.projects
     display: flex;
     align-items: center;
     padding: 16px;
-    background-color: var(--bg-color-2);
     border-radius: 8px;
+    background-color: var(--bg-card-color);
+    transition: background-color .3s;
 
     &:hover {
-      background-color: var(--bg-color-4);
+      background-color: var(--hover-color-1);
     }
   }
 }

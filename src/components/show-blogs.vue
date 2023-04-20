@@ -15,7 +15,7 @@ function formatDate(time) {
   function patchDate(num) {
     return num < 10 ? `0${num}` : num
   }
-  return [y, m, d].map(item => patchDate(item)).join('-')
+  return [y, m, d].map((item) => patchDate(item)).join('-')
 }
 </script>
 
@@ -43,15 +43,16 @@ function formatDate(time) {
     font-size: 1.125rem;
     cursor: pointer;
     overflow: hidden;
+    transition: background-color .3s;
 
     &:hover {
-      background-color: var(--bg-color-2);
+      background-color: var(--hover-color);
     }
   }
 
   .time {
     float: right;
-    color: var(--font-color-4);
+    color: var(--font-subtitle-color);
   }
 }
 </style>

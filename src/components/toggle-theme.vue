@@ -34,6 +34,7 @@ function toggleTheme() {
   mask-size: 100% 100%;
   -webkit-mask: var(--icon-theme) no-repeat;
   -webkit-mask-size: 100% 100%;
+  cursor: pointer;
 }
 
 .dark .toggle-theme {

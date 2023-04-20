@@ -1,0 +1,85 @@
+/* (Common styles) */
+:root {
+  --white                 : #fff;
+
+  --black-alpha-0         : rgba(0, 0, 0, .04);
+  --black-alpha-1         : rgba(0, 0, 0, .06);
+  --black-alpha-2         : rgba(0, 0, 0, .08);
+  --black-alpha-3         : rgba(0, 0, 0, .16);
+  --black-alpha-4         : rgba(0, 0, 0, .24);
+
+  --white-alpha-0         : rgba(255, 255, 255, .04);
+  --white-alpha-1         : rgba(255, 255, 255, .06);
+  --white-alpha-2         : rgba(255, 255, 255, .08);
+  --white-alpha-3         : rgba(255, 255, 255, .16);
+  --white-alpha-4         : rgba(255, 255, 255, .24);
+
+  --grey-0                : hsl(240, 7%, 97%);
+  --grey-1                : hsl(210, 8%, 95%);
+  --grey-2                : hsl(225, 7%, 89%);
+  --grey-3                : hsl(217, 7%, 78%);
+  --grey-4                : hsl(224, 6%, 64%);
+
+  --grey-5                : hsl(218, 7%, 55%);
+  --grey-6                : hsl(219, 7%, 40%);
+  --grey-7                : hsl(214, 5%, 28%);
+  --grey-8                : hsl(218, 7%, 22%);
+  --grey-9                : hsl(225, 7%, 14%);
+  --grey-10               : hsl(220, 7%, 8%);
+
+  --blue                  : hsl(209, 81%, 55%);
+  --primary               : var(--blue);
+}
+
+@mixin lightVariables {
+  --bg-color              : var(--white);
+  --bg-card-color         : var(--grey-0);
+  --bg-list-menu-color    : var(--white);
+  --bg-button-color       : var(--white);
+  --bg-selection-color    : hsl(209, 81%, 90%);
+
+  --font-color            : var(--grey-8);
+  --font-subtitle-color   : var(--grey-4);
+
+  --hover-color           : var(--black-alpha-0);
+  --hover-color-1         : var(--black-alpha-1);
+  --border-color          : var(--grey-1);
+  --scrollbar-thumb-color : hsl(228, 10%, 90%);
+}
+
+@mixin darkVariables {
+  --bg-color              : var(--grey-10);
+  --bg-card-color         : var(--grey-9);
+  --bg-list-menu-color    : var(--grey-8);
+  --bg-button-color       : var(--grey-8);
+  --bg-selection-color    : hsla(245, 58%, 51%, 0.4);
+
+  --font-color            : var(--grey-1);
+  --font-subtitle-color   : var(--grey-5);
+
+  --hover-color           : var(--white-alpha-2);
+  --hover-color-1         : var(--white-alpha-3);
+  --border-color          : var(--grey-5);
+  --scrollbar-thumb-color : hsl(210, 8%, 20%);
+}
+
+/* Light scheme (Default) */
+/* Can be forced with theme="light" */
+.light,
+:root:not(.dark) {
+  @include lightVariables;
+}
+
+/* Dark scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    @include darkVariables;
+  }
+}
+
+/* Dark scheme (Forced) */
+/* Enabled if forced with theme="dark" */
+.dark {
+  @include darkVariables;
+}
