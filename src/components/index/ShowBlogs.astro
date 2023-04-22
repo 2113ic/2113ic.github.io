@@ -5,6 +5,7 @@ import config from '@/config'
 
 const isNotDraft = ({ data }) => data.draft !== true
 const blogs = await getCollection('blog', isNotDraft)
+
 const sortedBlogs = blogs.sort((a, b) => {
   const dateA = +a.data.date.replaceAll('-', '')
   const dateB = +b.data.date.replaceAll('-', '')
@@ -12,10 +13,11 @@ const sortedBlogs = blogs.sort((a, b) => {
   return dateB - dateA
 })
 const showBlogs = sortedBlogs.slice(0, config.blogs.showNum)
+console.log(showBlogs.length)
 ---
 
 <div class="blogs">
-  <HeadLine more="./blog">博客</HeadLine>
+  {showBlogs.length !== 0 && <HeadLine more="./blog">博客</HeadLine>}
 
   <div class="content">
     {
