@@ -1,20 +1,20 @@
 ---
-import DefaultLayout  from '../layouts/DefaultLayout.astro'
-import ToggleTheme    from '@components/ToggleTheme.vue'
-import FindMe         from '@components/index/FindMe.vue'
-import ShowProjects   from '@components/index/ShowProjects.vue'
-import ShowBlogs      from '@components/index/ShowBlogs.vue'
+import DefaultLayout  from '@/layouts/DefaultLayout.astro'
+import ToolBar        from '@/components/ToolBar.astro'
+import FindMe         from '@/components/index/FindMe.astro'
+import ShowProjects   from '@/components/index/ShowProjects.astro'
+import ShowBlogs      from '@/components/index/ShowBlogs.astro'
 
-import CONFIG from '@/config'
-import '@styles/index.scss'
+import config from '@/config'
+import '@/styles/index.scss'
 
-const { name, info, title } = CONFIG
+const { name, info } = config
 ---
 
-<DefaultLayout title={title}>
-  <ToggleTheme client:only="vue" />
+<DefaultLayout>
+  <ToolBar />
   <header>
-    <h1 class="greeting">{name}</h1>
+    <h1 class="name">{name}</h1>
     <div class="info">{info}</div>
     <FindMe />
   </header>

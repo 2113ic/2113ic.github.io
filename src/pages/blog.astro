@@ -1,0 +1,36 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import ToolBar from '@/components/ToolBar.astro'
+import ArticleItem from '@/components/blog/ArticleItem.astro'
+import { getCollection } from 'astro:content'
+
+const isNotDraft = ({ data }) => data.isDraft === false
+const blogs = await getCollection('blog', isNotDraft)
+---
+
+<DefaultLayout>
+  <ToolBar back search />
+  <main>
+    <article>
+      <ul class="article-list">
+        {
+          blogs.map(({ data, slug }) => (
+            <ArticleItem data={data} url={`./blog/${slug}`} />
+          ))
+        }
+      </ul>
+      { blogs.length === 0 && <div class="empty">这里空空如也</div> }
+    </article>
+  </main>
+</DefaultLayout>
+
+<style>
+  .article-list {
+    padding-left: 0;
+    color: var(--primary);
+  }
+
+  .empty {
+    text-align: center;
+  }
+</style>

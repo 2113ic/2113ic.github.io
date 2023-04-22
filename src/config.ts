@@ -43,6 +43,5 @@ export default {
   ],
   blogs: {
     showNum: 5,
-    
   }
 }

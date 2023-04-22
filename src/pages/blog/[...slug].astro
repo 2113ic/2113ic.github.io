@@ -1,0 +1,75 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import ToolBar from '@/components/ToolBar.astro'
+import '/public/github-markdown.css'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  entry: CollectionEntry<'blog'>
+}
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog')
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+const { cover, date, tags } = entry.data
+---
+
+<DefaultLayout>
+  <ToolBar back />
+  <header>
+    {cover && <img class="cover night" src={cover} alt="cover" />}
+    <p class="date">{date}</p>
+  </header>
+  <main>
+    <article class="markdown-body"><Content /></article>
+    <section class="tags">
+      {
+        tags.map((tag: string) => (
+          <a class="tag" href="">
+            {tag}
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</DefaultLayout>
+
+<style lang="scss">
+  .cover {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .date {
+    text-align: right;
+    color: var(--font-subtitle-color);
+  }
+
+  .tags {
+    margin: 42px 0;
+    padding: 24px 0;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .tag {
+    margin: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: var(--bg-card-color);
+    border-radius: 6px;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+</style>
