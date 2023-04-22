@@ -1,0 +1,105 @@
+---
+const { data, url } = Astro.props
+---
+
+<li class="article-item">
+  <div class="head">
+    <a href={url} class="title">{data.title}</a>
+  </div>
+  <div class="body">
+    <div class="content">
+      <div class="text">{data.description}</div>
+
+      <div class="bottom">
+        <div class="date-and-publish">
+          <span class="date">{data.date} 发布于</span>
+          <a class="publish" href={data.publish}>{data.publish}</a>
+        </div>
+        <div class="tags">
+          {
+            data.tags.map((tag: string) => (
+              <a class="tag" href="">
+                {tag}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    {
+      data.cover && (
+        <div class="cover">
+          <img class="night" src={data.cover} />
+        </div>
+      )
+    }
+  </div>
+</li>
+
+<style lang="scss">
+  .article-item {
+    padding: 42px 0;
+    border-top: 1px solid var(--border-color);
+
+    &:first-of-type {
+      border: none;
+    }
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--primary);
+    border-bottom: 1px dashed var(--border-color);
+    transition: color 0.3s;
+
+    &:hover {
+      border-bottom: 1px solid;
+    }
+  }
+  
+  .body {
+    display: flex;
+    margin: 16px 0;
+
+    .content {
+      flex: 3;
+      color: var(--font-color);
+
+      .text {
+        margin: 12px 0 16px;
+      }
+    }
+
+    .cover {
+      flex: 1;
+
+      img {
+        width: 100%;
+        border-radius: 12px;
+      }
+    }
+  }
+
+  .bottom {
+    line-height: 28px;
+    color: var(--font-subtitle-color);
+
+    .publish:hover {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tag {
+      margin: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      background-color: var(--bg-card-color);
+      border-radius: 6px;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+</style>

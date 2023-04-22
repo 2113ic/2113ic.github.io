@@ -9,6 +9,7 @@ pnpm-debug.log*
 # Editor directories and files
 .idea
 .vscode
+.astro
 *.suo
 *.ntvs*
 *.njsproj

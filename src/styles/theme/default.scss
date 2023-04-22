@@ -32,6 +32,7 @@
 }
 
 @mixin lightVariables {
+  color-scheme: light;
   --bg-color              : var(--white);
   --bg-card-color         : var(--grey-0);
   --bg-list-menu-color    : var(--white);
@@ -48,6 +49,7 @@
 }
 
 @mixin darkVariables {
+  color-scheme: dark;
   --bg-color              : var(--grey-10);
   --bg-card-color         : var(--grey-9);
   --bg-list-menu-color    : var(--grey-8);
@@ -65,21 +67,21 @@
 
 /* Light scheme (Default) */
 /* Can be forced with theme="light" */
-.light,
-:root:not(.dark) {
+[theme="light"],
+:root:not([theme="dark"]) {
   @include lightVariables;
 }
 
 /* Dark scheme (Auto) */
 /* Automatically enabled if user has Dark mode enabled */
 @media (prefers-color-scheme: dark) {
-  :root:not(.light) {
+  :root:not([theme="light"]) {
     @include darkVariables;
   }
 }
 
 /* Dark scheme (Forced) */
 /* Enabled if forced with theme="dark" */
-.dark {
+[theme="dark"] {
   @include darkVariables;
 }

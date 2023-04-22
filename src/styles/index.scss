@@ -1,7 +1,7 @@
 @import './theme/default.scss';
 
 // .night is dark mode for img.
-.dark .night {
+[theme="dark"] .night {
   background-color: hsla(223deg, 71%, 16%, 0.6);
   background-blend-mode: darken;
   filter: brightness(80%) grayscale(20%) contrast(1.2);
@@ -62,20 +62,25 @@ a {
   text-decoration: none;
 }
 
+.tool-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  padding: 0 24px;
+}
+
 header {
+  position: relative;
   max-width: 800px;
-  margin: 24px auto 0;
+  margin: 0 auto;
   padding: 24px;
   border-radius: 16px;
 
-  .info {
-    font-size: 18px;
-    line-height: 28px;
-  }
-
-  .icon {
-    width: 20px;
-    height: 20px;
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 

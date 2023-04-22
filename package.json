@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@astrojs/vue": "^1.2.2",
-    "astro": "^1.9.2",
+    "astro": "^2.3.0",
+    "remark-toc": "^8.0.1",
     "vue": "^3.2.30"
   },
   "devDependencies": {

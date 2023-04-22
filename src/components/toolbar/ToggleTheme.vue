@@ -1,29 +1,34 @@
 <script setup>
-const html = document.documentElement
-const currentTheme = localStorage.getItem('theme')
-
-html.classList.add(currentTheme)
+initTheme()
 
 function toggleTheme() {
-  const targetTheme = html.classList.contains('dark') ? 'light' : 'dark'
+  const html = document.documentElement
+  const currentTheme = html.getAttribute('theme')
+  const targetTheme = currentTheme === 'light' ? 'dark' : 'light'
 
-  html.setAttribute('class', targetTheme)
   localStorage.setItem('theme', targetTheme)
+  html.setAttribute('theme', targetTheme)
+}
+
+function initTheme() {
+  const html = document.documentElement
+  const storedTheme = localStorage.getItem('theme')
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const applyTheme = storedTheme || (systemTheme ? 'dark' : 'light')
+
+  localStorage.setItem('theme', applyTheme)
+  html.setAttribute('theme', applyTheme)
 }
 </script>
 
 <template>
-  <button class="toggle-theme" @click="toggleTheme"></button>
+  <button class="toggle-theme" @click="toggleTheme" tabindex="1"></button>
 </template>
 
 <style lang="scss" scoped>
 .toggle-theme {
   --icon-theme: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23888' d='M15 2h2v4.96h-2zm6.687 6.89l3.507-3.506 1.414 1.414-3.507 3.507zM25.04 15H30v2h-4.96zm-3.347 8.104l1.414-1.414 3.507 3.507L25.2 26.61zM15 25.04h2V30h-2zm-9.604.162l3.508-3.507 1.414 1.414-3.507 3.507zM2 15h4.96v2H2zm3.39-8.197l1.415-1.414 3.507 3.507-1.414 1.414zM16 12a4 4 0 1 1-4 4 4 4 0 0 1 4-4m0-2a6 6 0 1 0 6 6 6 6 0 0 0-6-6z'/%3E%3C/svg%3E");
   
-  position: absolute;
-  right: 24px;
-  top: 24px;
-
   width: 28px;
   height: 28px;
   padding: 0;

@@ -1,0 +1,58 @@
+---
+import config from '@/config'
+
+const { findme } = config
+const styleHeadle = (item: string) => `--bgColor: ${item || '#343438'}`
+---
+
+<ul class="find-me">
+  {
+    findme.map((item) => {
+      return (
+        <li style={styleHeadle(item.background)}>
+          <a href={item.url}>
+            <div class="icon" set:html={item.icon} />
+            {item.label && <div class="text">{item.label}</div>}
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<style lang="scss">
+  .find-me {
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    li {
+      float: left;
+      padding: 8px 14px;
+      margin: 10px 10px 0 0;
+      border-radius: 6px;
+      background-color: var(--hover-color);
+
+      &:hover {
+        color: #fff;
+        background-color: var(--bgColor);
+      }
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+  }
+
+  .text {
+    margin-left: 5px;
+  }
+</style>

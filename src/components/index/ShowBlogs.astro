@@ -1,0 +1,58 @@
+---
+import HeadLine from './HeadLine.astro'
+import { getCollection } from 'astro:content'
+import config from '@/config'
+
+const isNotDraft = ({ data }) => data.draft !== true
+const blogs = await getCollection('blog', isNotDraft)
+const sortedBlogs = blogs.sort((a, b) => {
+  const dateA = +a.data.date.replaceAll('-', '')
+  const dateB = +b.data.date.replaceAll('-', '')
+
+  return dateB - dateA
+})
+const showBlogs = sortedBlogs.slice(0, config.blogs.showNum)
+---
+
+<div class="blogs">
+  <HeadLine more="./blog">博客</HeadLine>
+
+  <div class="content">
+    {
+      showBlogs.map(({ data, slug }) => {
+        return (
+          <a href={`./blog/${slug}`}>
+            <span>{data.title}</span>
+            <span class="time">{data.date}</span>
+          </a>
+        )
+      })
+    }
+  </div>
+</div>
+
+<style lang="scss">
+  .content {
+    margin-bottom: 24px;
+
+    a {
+      display: block;
+      padding: 12px 16px;
+      margin: 8px 0;
+      border-radius: 8px;
+      font-size: 1.125rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: var(--hover-color);
+      }
+    }
+
+    .time {
+      float: right;
+      color: var(--font-subtitle-color);
+    }
+  }
+</style>
