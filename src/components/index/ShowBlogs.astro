@@ -13,11 +13,10 @@ const sortedBlogs = blogs.sort((a, b) => {
   return dateB - dateA
 })
 const showBlogs = sortedBlogs.slice(0, config.blogs.showNum)
-console.log(showBlogs.length)
 ---
 
 <div class="blogs">
-  {showBlogs.length !== 0 && <HeadLine more="./blog">博客</HeadLine>}
+  { showBlogs.length !== 0 && <HeadLine more="./blog">博客</HeadLine> }
 
   <div class="content">
     {
