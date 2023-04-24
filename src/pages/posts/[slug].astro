@@ -24,7 +24,7 @@ const { cover, date, tags } = entry.data
 ---
 
 <DefaultLayout>
-  <ToolBar back search />
+  <ToolBar back />
   <header>
     {cover && <img class="cover night" src={cover} alt="cover" />}
     <p class="date">{date}</p>
@@ -33,11 +33,7 @@ const { cover, date, tags } = entry.data
     <article class="markdown-body"><Content /></article>
     <section class="tags">
       {
-        tags.map((tag: string) => (
-          <a class="tag" href="">
-            {tag}
-          </a>
-        ))
+        tags.map((tag: string) => <a class="tag">{tag}</a>)
       }
     </section>
   </main>

@@ -5,14 +5,15 @@ import config from '@/config'
 
 const isNotDraft = ({ data }) => data.draft !== true
 const posts = await getCollection('posts', isNotDraft)
+const delimiter = config.blogs.dateDelimiter || '-'
 
 const sortedBlogs = posts.sort((a, b) => {
-  const dateA = +a.data.date.replaceAll('-', '')
-  const dateB = +b.data.date.replaceAll('-', '')
+  const dateA = +a.data.date.replaceAll(delimiter, '')
+  const dateB = +b.data.date.replaceAll(delimiter, '')
 
   return dateB - dateA
 })
-const showBlogs = sortedBlogs.slice(0, config.blogs.showNum)
+const showBlogs = sortedBlogs.slice(0, config.blogs.showNum || 5)
 ---
 
 <div class="blogs">

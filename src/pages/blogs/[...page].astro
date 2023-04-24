@@ -1,28 +1,31 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro'
-import ToolBar from '@/components/ToolBar.astro'
-import ArticleItem from '@/components/blog/ArticleItem.astro'
-import PaginationBox from '@/components/blog/PaginationBox.astro'
+import DefaultLayout  from '@/layouts/DefaultLayout.astro'
+import ToolBar        from '@/components/ToolBar.astro'
+import ArticleItem    from '@/components/blog/ArticleItem.astro'
+import PaginationBox  from '@/components/blog/PaginationBox.astro'
 import { getCollection } from 'astro:content'
+import config from '@/config'
 
 export async function getStaticPaths({ paginate }) {
   const isNotDraft = ({ data }) => data.isDraft === false
   const posts = await getCollection('posts', isNotDraft)
+  const { dateDelimiter, pageSize } = config.blogs
+  const delimiter = dateDelimiter || '-'
 
   const sortedBlogs = posts.sort((a, b) => {
-    const dateA = +a.data.date.replaceAll('-', '')
-    const dateB = +b.data.date.replaceAll('-', '')
+    const dateA = +a.data.date.replaceAll(delimiter, '')
+    const dateB = +b.data.date.replaceAll(delimiter, '')
 
     return dateB - dateA
   })
-  return paginate(sortedBlogs, { pageSize: 10 })
+  return paginate(sortedBlogs, { pageSize: pageSize || 10 })
 }
 
 const { data, url, total, size, currentPage, lastPage } = Astro.props.page
 ---
 
 <DefaultLayout>
-  <ToolBar back search />
+  <ToolBar back />
 
   <main>
     <article>

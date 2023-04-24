@@ -6,7 +6,7 @@ const { total, size, cur, lastPage, url } = Astro.props
 
 const isSinglePage = total <= size
 const halfPagerCount = Math.ceil(pagerCount / 2)
-const x = Math.floor((pagerCount - 2) / 2)
+const middlePageIndex = Math.floor((pagerCount - 2) / 2)
 const showBeforeMore = cur > halfPagerCount
 const showAfterMore = cur + halfPagerCount <= lastPage
 const isFirstPage = cur === 1
@@ -47,7 +47,10 @@ function getLists(cur: number): number[] {
   const result = [] as number[]
 
   if (cur > halfPagerCount) {
-    for (let i = cur - x; i <= cur + x; i++) {
+    const min = cur - middlePageIndex
+    const max = cur + middlePageIndex
+
+    for (let i = min; i <= max; i++) {
       result.push(i)
     }
   } else {

@@ -2,7 +2,7 @@ import { z, defineCollection } from "astro:content"
 import config from "@/config"
 import { formatDate } from "@/utils/common"
 
-const blog = defineCollection({
+const posts = defineCollection({
   schema: z.object({
     title       : z.string(),
     cover       : z.string().optional(),
@@ -15,4 +15,4 @@ const blog = defineCollection({
   })
 })
 
-export const collections = { blog }
+export const collections = { posts }
