@@ -45,6 +45,7 @@
   --hover-color           : var(--black-alpha-0);
   --hover-color-1         : var(--black-alpha-1);
   --border-color          : var(--grey-1);
+  --border-color-1        : var(--grey-1);
   --scrollbar-thumb-color : hsl(228, 10%, 90%);
 }
 
@@ -61,7 +62,8 @@
 
   --hover-color           : var(--white-alpha-2);
   --hover-color-1         : var(--white-alpha-3);
-  --border-color          : var(--grey-5);
+  --border-color          : var(--grey-7);
+  --border-color-1        : transparent;
   --scrollbar-thumb-color : hsl(210, 8%, 20%);
 }
 

@@ -1,0 +1,57 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import ToolBar from '@/components/ToolBar.astro'
+import ArticleItem from '@/components/blog/ArticleItem.astro'
+import PaginationBox from '@/components/blog/PaginationBox.astro'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths({ paginate }) {
+  const isNotDraft = ({ data }) => data.isDraft === false
+  const posts = await getCollection('posts', isNotDraft)
+
+  const sortedBlogs = posts.sort((a, b) => {
+    const dateA = +a.data.date.replaceAll('-', '')
+    const dateB = +b.data.date.replaceAll('-', '')
+
+    return dateB - dateA
+  })
+  return paginate(sortedBlogs, { pageSize: 10 })
+}
+
+const { data, url, total, size, currentPage, lastPage } = Astro.props.page
+---
+
+<DefaultLayout>
+  <ToolBar back search />
+
+  <main>
+    <article>
+      <ul class="article-list">
+        {
+          data.map(({ data, slug }) => (
+            <ArticleItem data={data} url={`/posts/${slug}`} />
+          ))
+        }
+      </ul>
+      {data.length === 0 && <div class="empty">这里空空如也</div>}
+    </article>
+    <PaginationBox
+      url={url}
+      total={total}
+      size={size}
+      cur={currentPage}
+      lastPage={lastPage}
+    />
+  </main>
+</DefaultLayout>
+
+<style>
+  .article-list {
+    padding-left: 0;
+    color: var(--primary);
+  }
+
+  .empty {
+    text-align: center;
+  }
+</style>

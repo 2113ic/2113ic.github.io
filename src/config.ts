@@ -43,5 +43,6 @@ export default {
   ],
   blogs: {
     showNum: 5,
+    pagerCount: 7,
   }
 }

@@ -1,6 +1,4 @@
 <script setup>
-initTheme()
-
 function toggleTheme() {
   const html = document.documentElement
   const currentTheme = html.getAttribute('theme')
@@ -8,16 +6,6 @@ function toggleTheme() {
 
   localStorage.setItem('theme', targetTheme)
   html.setAttribute('theme', targetTheme)
-}
-
-function initTheme() {
-  const html = document.documentElement
-  const storedTheme = localStorage.getItem('theme')
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const applyTheme = storedTheme || (systemTheme ? 'dark' : 'light')
-
-  localStorage.setItem('theme', applyTheme)
-  html.setAttribute('theme', applyTheme)
 }
 </script>
 

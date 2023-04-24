@@ -2,7 +2,7 @@
 
 <template>
   <form class="search-box" action="" method="get">
-    <input class="search-input" type="text" placeholder="请输入..." />
+    <input class="search-input" name="q" type="text" placeholder="请输入..." />
     <button type="submit" class="search-btn">
       <svg
         width="24"

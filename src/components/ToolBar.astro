@@ -7,8 +7,8 @@ const { back, search } = Astro.props
 ---
 
 <div class="tool-bar">
-  { back   && <BackBtn client:only /> }
-  { search && <SearchBox client:only /> }
+  { back   && <BackBtn client:only="vue" /> }
+  { search && <SearchBox client:only="vue" /> }
   { !back  && !search && <span></span> }
-  <ToggleTheme client:only />
+  <ToggleTheme client:only="vue" />
 </div>

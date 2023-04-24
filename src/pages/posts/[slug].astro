@@ -1,19 +1,18 @@
 ---
 import DefaultLayout  from '@/layouts/DefaultLayout.astro'
 import ToolBar        from '@/components/ToolBar.astro'
-import '/public/github-markdown.css'
 
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  entry: CollectionEntry<'blog'>
+  entry: CollectionEntry<'posts'>
 }
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog')
+  const postsEntries = await getCollection('posts')
 
-  return blogEntries.map((entry) => ({
+  return postsEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }))
@@ -25,7 +24,7 @@ const { cover, date, tags } = entry.data
 ---
 
 <DefaultLayout>
-  <ToolBar back />
+  <ToolBar back search />
   <header>
     {cover && <img class="cover night" src={cover} alt="cover" />}
     <p class="date">{date}</p>
@@ -45,6 +44,8 @@ const { cover, date, tags } = entry.data
 </DefaultLayout>
 
 <style lang="scss">
+  @import '/public/github-markdown.css';
+
   .cover {
     width: 100%;
     border-radius: 12px;

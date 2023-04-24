@@ -4,9 +4,9 @@ import { getCollection } from 'astro:content'
 import config from '@/config'
 
 const isNotDraft = ({ data }) => data.draft !== true
-const blogs = await getCollection('blog', isNotDraft)
+const posts = await getCollection('posts', isNotDraft)
 
-const sortedBlogs = blogs.sort((a, b) => {
+const sortedBlogs = posts.sort((a, b) => {
   const dateA = +a.data.date.replaceAll('-', '')
   const dateB = +b.data.date.replaceAll('-', '')
 
@@ -16,13 +16,13 @@ const showBlogs = sortedBlogs.slice(0, config.blogs.showNum)
 ---
 
 <div class="blogs">
-  { showBlogs.length !== 0 && <HeadLine more="./blog">博客</HeadLine> }
+  { showBlogs.length !== 0 && <HeadLine more="./blogs">博客</HeadLine> }
 
   <div class="content">
     {
       showBlogs.map(({ data, slug }) => {
         return (
-          <a href={`./blog/${slug}`}>
+          <a href={`./posts/${slug}`}>
             <span>{data.title}</span>
             <span class="time">{data.date}</span>
           </a>

@@ -1,0 +1,153 @@
+---
+import config from '@/config'
+
+const pagerCount = config.blogs.pagerCount || 7
+const { total, size, cur, lastPage, url } = Astro.props
+
+const isSinglePage = total <= size
+const halfPagerCount = Math.ceil(pagerCount / 2)
+const x = Math.floor((pagerCount - 2) / 2)
+const showBeforeMore = cur > halfPagerCount
+const showAfterMore = cur + halfPagerCount <= lastPage
+const isFirstPage = cur === 1
+const isLastPage = cur === lastPage
+
+/**
+ * Get an array of page numbers to display pagination links.
+ *
+ * @example
+ * 1. lastPage = 5, pagerCount = 7
+ * cur = 1,2,3,4,5
+ * [1, 2, 3, 4, 5]
+ *
+ * 2. lastPage = 8, pagerCount = 7
+ * cur = 1,2,3,4
+ * [1, 2, 3, 4, 5, 6, '...',8]
+ *
+ * cur = 5,6,7,8
+ * [1, '...', 3, 4, 5, 6, 7, 8]
+ *
+ * 3. lastPage = 12, pagerCount = 7
+ * cur = 1,2,3,4
+ * [1, 2, 3, 4, 5, 6, '...', 12]
+ *
+ * cur = 5
+ * [1, '...', 3, 4, 5, 6, 7, '...', 12]
+ *
+ * cur = 8
+ * [1, '...', 6, 7, 8, 9, 10, '...', 12]
+ *
+ * cur = 9
+ * [1, '...', 7, 8, 9, 10, 11, 12]
+ * 
+ * @param {number} cur - Current page number.
+ * @returns {number[]} - An array of page numbers.
+ */
+function getLists(cur: number): number[] {
+  const result = [] as number[]
+
+  if (cur > halfPagerCount) {
+    for (let i = cur - x; i <= cur + x; i++) {
+      result.push(i)
+    }
+  } else {
+    for (let i = 2; i < halfPagerCount; i++) {
+      result.push(i)
+    }
+  }
+
+  return result.filter((item) => 1 < item && item <= lastPage)
+}
+---
+
+{
+  !isSinglePage && (
+    <section class="pagination">
+      <a class="prev-btn" href={url.prev}>上一页</a>
+
+      <div class="pager">
+        <a 
+          href="/blogs" 
+          class:list={['number', { active: isFirstPage }]}
+        >1</a>
+        {showBeforeMore && <li class="more" />}
+
+        {getLists(cur).map((item: number) => {
+          return (
+            <a
+              href={`/blogs/${item}`}
+              class:list={['number', { active: cur === item }]}
+            >{item}</a>
+          )
+        })}
+
+        {showAfterMore && <li class="more" />}
+        <a
+          href={`/blogs/${lastPage}`}
+          class:list={['number', { active: isLastPage }]}
+        >{lastPage}</a>
+      </div>
+
+      <a class="next-btn" href={url.next}>下一页</a>
+    </section>
+  )
+}
+
+<style lang="scss">
+  .pagination {
+    padding-bottom: 24px;
+    line-height: 32px;
+    overflow: hidden;
+  }
+
+  .prev-btn,
+  .next-btn {
+    float: left;
+    display: inline-block;
+    padding: 0 12px;
+    height: 100%;
+
+    text-align: center;
+    background-color: var(--bg-button-color);
+    border: 1px solid var(--border-color-1);
+    border-radius: 4px;
+
+    &:not([href]) {
+      cursor: not-allowed;
+    }
+  }
+
+  .pager {
+    float: left;
+    margin: 0 8px;
+    overflow: hidden;
+  }
+
+  .number,
+  .more {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    text-align: center;
+    border-radius: 6px;
+    background-color: var(--bg-button-color);
+    border: 1px solid var(--border-color-1);
+    transition: background-color 0.3s;
+  }
+
+  .number:last-child {
+    margin-right: 0;
+  }
+
+  .more::before {
+    content: '···';
+  }
+
+  .active {
+    border: 0;
+    color: var(--white);
+    border: 1px solid transparent;
+    background-color: var(--primary);
+  }
+</style>
