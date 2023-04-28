@@ -12,7 +12,7 @@ const { projects } = config
     {
       projects.map((project) => {
         return (
-          <a class="project" href={project.url}>
+          <a class="project" href={project.url} target="_blank">
             <div class="icon" set:html={project.icon} />
             <div class="info">
               <div class="title">{project.title}</div>
