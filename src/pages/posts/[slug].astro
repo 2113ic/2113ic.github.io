@@ -1,6 +1,7 @@
 ---
 import DefaultLayout  from '@/layouts/DefaultLayout.astro'
 import ToolBar        from '@/components/ToolBar.astro'
+import '/public/github-markdown.css';
 
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
@@ -40,7 +41,6 @@ const { cover, date, tags } = entry.data
 </DefaultLayout>
 
 <style lang="scss">
-  @import '/public/github-markdown.css';
 
   article.markdown-body {
     color: var(--font-color);
