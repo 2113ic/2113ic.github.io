@@ -35,7 +35,7 @@ const icons = {
 
 const findme: FindmeItem[]  = [
   {
-    url: 'https://github.io/2113ic',
+    url: 'https://github.com/2113ic',
     icon: icons.github,
     label: 'Github',
   },
