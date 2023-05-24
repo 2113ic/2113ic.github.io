@@ -3,7 +3,7 @@ title       : '一次探索原生项目的最佳实践'
 date        : '2023-5-23'
 tags        : ['JavaScript', '折腾']
 publish     : 'JavaScript'
-cover       : 'htmlPlus.png'
+cover       : 'htmlPlus.webp'
 description : '关于我重构项目时的一番折腾……'
 ---
 

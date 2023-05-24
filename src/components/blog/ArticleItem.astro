@@ -25,9 +25,9 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
       </div>
     </div>
     {
-      cover && (
+      data.cover && (
         <div class="cover">
-          <img class="night" src={cover} />
+          <img class="night" src={cover} loading="lazy" />
         </div>
       )
     }

@@ -1,7 +1,7 @@
 ---
-import DefaultLayout  from '@/layouts/DefaultLayout.astro'
-import ToolBar        from '@/components/ToolBar.astro'
-import '/public/github-markdown.css';
+import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import ToolBar from '@/components/ToolBar.astro'
+import '/public/github-markdown.css'
 
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
@@ -29,21 +29,22 @@ const coverPath = isDev ? `/public/cover/${cover}` : `/cover/${cover}`
 <DefaultLayout>
   <ToolBar back />
   <header>
-    {coverPath && <img class="cover night" src={coverPath} alt="cover" />}
+    {
+      cover && (
+        <img class="cover night" src={coverPath} alt="cover" loading="lazy" />
+      )
+    }
     <p class="date">{date}</p>
   </header>
   <main>
     <article class="markdown-body"><Content /></article>
     <section class="tags">
-      {
-        tags.map((tag: string) => <a class="tag">{tag}</a>)
-      }
+      {tags.map((tag: string) => <a class="tag">{tag}</a>)}
     </section>
   </main>
 </DefaultLayout>
 
 <style lang="scss">
-
   article.markdown-body {
     color: var(--font-color);
     background-color: var(--bg-color);
