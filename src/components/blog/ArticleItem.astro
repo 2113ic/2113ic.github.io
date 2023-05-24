@@ -1,5 +1,7 @@
 ---
 const { data, url } = Astro.props
+const isDev = import.meta.env.DEV
+const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
 ---
 
 <li class="article-item">
@@ -23,9 +25,9 @@ const { data, url } = Astro.props
       </div>
     </div>
     {
-      data.cover && (
+      cover && (
         <div class="cover">
-          <img class="night" src={data.cover} />
+          <img class="night" src={cover} />
         </div>
       )
     }

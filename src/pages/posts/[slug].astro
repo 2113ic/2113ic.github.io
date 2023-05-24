@@ -22,12 +22,14 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { Content } = await entry.render()
 const { cover, date, tags } = entry.data
+const isDev = import.meta.env.DEV
+const coverPath = isDev ? `/public/cover/${cover}` : `/cover/${cover}`
 ---
 
 <DefaultLayout>
   <ToolBar back />
   <header>
-    {cover && <img class="cover night" src={cover} alt="cover" />}
+    {coverPath && <img class="cover night" src={coverPath} alt="cover" />}
     <p class="date">{date}</p>
   </header>
   <main>
