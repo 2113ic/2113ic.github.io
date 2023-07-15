@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content } = await entry.render()
-const { cover, date, tags } = entry.data
+const { title, cover, date, tags } = entry.data
 const isDev = import.meta.env.DEV
 const coverPath = isDev ? `/public/cover/${cover}` : `/cover/${cover}`
 ---
@@ -37,7 +37,11 @@ const coverPath = isDev ? `/public/cover/${cover}` : `/cover/${cover}`
     <p class="date">{date}</p>
   </header>
   <main>
-    <article class="markdown-body"><Content /></article>
+
+    <article class="markdown-body">
+      <h1>{title}</h1>
+      <Content />
+    </article>
     <section class="tags">
       {tags.map((tag: string) => <a class="tag">{tag}</a>)}
     </section>

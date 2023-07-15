@@ -7,7 +7,11 @@ export default defineConfig({
   integrations: [vue()],
   site: 'https://2113ic.github.io/',
   markdown: {
-    remarkPlugins: [remarkToc],
+    remarkPlugins: [
+      remarkToc.bind(this, {
+        heading: '目录',
+      })
+    ],
     shikiConfig: {
       theme: 'dracula',
     },

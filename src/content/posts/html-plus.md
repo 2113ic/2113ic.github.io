@@ -7,9 +7,7 @@ cover       : 'htmlPlus.webp'
 description : '关于我重构项目时的一番折腾……'
 ---
 
-# 一次探索原生项目的最佳实践
-
-## TOC
+## 目录
 
 ## 前言
 
@@ -110,7 +108,7 @@ console.log(new ExampleBox('.example-box'))
 
 打印 `ExampleBox` 实例就可以看到：
 
-![](Pasted%20image%2020230523221142.png)
+![Alt text](</images/html-plus/1.png>)
 
 看来是成功了😂。
 
@@ -219,11 +217,11 @@ const dataObj = {
 
 细心的同学可能发现了 `bind` 指令有一个特殊的参数（`$item`），它用于绑定对应的数组元素。这不好解释，我直接上一个效果图，估计就能看明白了。
 
-![](Pasted%20image%2020230523230559.png)
+![Alt text](</images/html-plus/2.png>)
 
 由于，实现这两个指令的代码有点长，就不放在这文章里面了。
 
-感兴趣的可以查看：https://github.com/2113ic/dot/tree/master/public/package/htmlPlus
+感兴趣的可以查看：<https://github.com/2113ic/dot/tree/master/public/package/htmlPlus>
 
 ## 结论
 
