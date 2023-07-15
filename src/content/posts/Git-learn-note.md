@@ -20,27 +20,27 @@ git 是一种源码管理系统（source code management，缩写为 SCM）。�
 
 2. 提交用户名和电子邮件
 
-   这些信息将作为提交者信息显示在更新历史中。
+    这些信息将作为提交者信息显示在更新历史中。
 
-   ```sh
-   git config --global user.name 'you'
-   git config --global user.email 'you@gmail.com'
-   ```
+    ```sh
+    git config --global user.name 'you'
+    git config --global user.email 'you@gmail.com'
+    ```
 
-   | 选项       | 说明                     |
-   | ---------- | ------------------------ |
-   | `--global` | 表示全局设置用户名或邮箱 |
+    | 选项       | 说明                     |
+    | ---------- | ------------------------ |
+    | `--global` | 表示全局设置用户名或邮箱 |
 
-   - 注意：`user.email` 应该填写你 GitHub 的 email，否则 GitHub 无法识别是哪个用户，该 commit 也不会记录在你空间的活动表中。
-   - 注意：如果不添加 `--global` 那么将设置为当前项目的配置，你可以在 .git 文件夹的 config 文件中看到你的配置。
+    - 注意：`user.email` 应该填写你 GitHub 的 email，否则 GitHub 无法识别是哪个用户，该 commit 也不会记录在你空间的活动表中。
+    - 注意：如果不添加 `--global` 那么将设置为当前项目的配置，你可以在 .git 文件夹的 config 文件中看到你的配置。
 
-   git 的全局设定被存放在用户本地目录的 .gitconfig 文件里，也可以直接编辑该配置文件。
+    git 的全局设定被存放在用户本地目录的 .gitconfig 文件里，也可以直接编辑该配置文件。
 
-   ```
-   [user]
-     name = you
-     email = you@gmail.com
-   ```
+    ```yaml
+    [user]
+      name = you
+      email = you@gmail.com
+    ```
 
 3. 查看当前项目的配置信息
 
@@ -268,7 +268,7 @@ git commit --amend <file1> <file2> ... -m [message]
    git cherry-pick [commit]
    ```
 
-5. 删除分支 
+5. 删除分支
 
    ```sh
    git branch -d [branch-name]
@@ -279,7 +279,7 @@ git commit --amend <file1> <file2> ... -m [message]
    # 不会影响远程分支
    git branch -dr <remote/branch-name>
    ```
-   
+
    | 选项 | 说明                                 |
    | ---- | ------------------------------------ |
    | `-d`   | 用于删除指定的本地分支或远程跟踪分支 |
@@ -380,7 +380,6 @@ git commit --amend <file1> <file2> ... -m [message]
    - 注意：①这个命令中的三个点号（`...`）是必须的，它们表示比较的方向，即从左往右比较 `branch1` 和 `branch2`，从右往左比较 `branch2` 和 `branch1`，然后将两次比较的结果合并起来输出。
    - 注意：①这个命令只会输出差异信息，并不会将这些差异合并到任何一个分支中。如果需要将差异合并到某个分支中，需要使用 `git merge` 命令或其他合并命令。
 
-
 3. show 操作
 
    ```sh
@@ -470,14 +469,14 @@ git commit --amend <file1> <file2> ... -m [message]
    # 重置暂存区与工作区，如果没有指定 commit，则默认与上一次 commit 保持一致
    git reset --hard [commit]
    ```
-   
+
    | 选项 | 说明 |
    | ---- | ---- |
    | `--hard`   | 重置当前分支的 HEAD 为指定 commit，同时重置暂存区和工作区，与指定 commit 一致 |
    | `--keep` | 重置当前 HEAD 为指定 commit，但保持暂存区和工作区不变 |
-   
+
    注意：使用 `--hard` 之前请备份未提交的更改，否则会导致未提交的更改**永久丢失**！
-   
+
 3. revert 操作
 
    ```sh
@@ -495,6 +494,6 @@ git archive
 
 ## 参考
 
-- wangdoc/git-tutorial：https://github.com/wangdoc/git-tutorial
+- wangdoc/git-tutorial：<https://github.com/wangdoc/git-tutorial>
 
-- 猴子都能懂的Git教程：https://backlog.com/git-tutorial/cn/
+- 猴子都能懂的Git教程：<https://backlog.com/git-tutorial/cn/>
