@@ -1,6 +1,6 @@
 ---
 title       : 'JavaScript 之正则表达式'
-date        : '2022-07-02'
+date        : '2022-7-2'
 tags        : ['Regexp']
 publish     : 'Regexp'
 description : '正则表达式学习笔记'
