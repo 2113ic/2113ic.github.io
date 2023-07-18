@@ -1,8 +1,8 @@
 ---
 title       : 'Dart Sass 安装过程的小坑'
-data        : '2023-7-18'
+date        : '2023-7-18'
 tags        : ['sass', '笔记']
-publish     : ['sass']
+publish     : 'sass'
 description : '偶然发现官方已经不再支持 Ruby sass 了，改用了安装更方便、速度更快的 Dart Sass 和 LibSass。我啪的一下，很快啊……'
 ---
 
