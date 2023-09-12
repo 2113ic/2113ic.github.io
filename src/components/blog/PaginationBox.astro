@@ -1,7 +1,7 @@
 ---
 import config from '@/config'
 
-const pagerCount = config.blogs.pagerCount || 7
+const pagerCount = config.blogs.pagerCount
 const { total, size, cur, lastPage, url } = Astro.props
 
 const isSinglePage = total <= size

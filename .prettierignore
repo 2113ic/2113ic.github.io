@@ -1,4 +1,10 @@
+# files
+*.md
+*.svg
+
+# directories
 dist
 node_modules
-*.md
+
+# pnpm lock file
 pnpm-lock.yaml

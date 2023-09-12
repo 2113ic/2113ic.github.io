@@ -1,13 +1,14 @@
 ---
 import config from '@/config'
+import type { FindmeItem } from '@/types'
 
 const { findme } = config
-const styleHeadle = (item: string) => `--bgColor: ${item || '#343438'}`
+const styleHeadle = (item: string | undefined) => `--bgColor: ${item || '#343438'}`
 ---
 
 <ul class="find-me">
   {
-    findme.map((item) => {
+    findme!.map((item: FindmeItem) => {
       return (
         <li style={styleHeadle(item.background)}>
           <a href={item.url}>

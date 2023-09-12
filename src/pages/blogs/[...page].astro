@@ -18,7 +18,7 @@ export async function getStaticPaths({ paginate }) {
 
     return dateB - dateA
   })
-  return paginate(sortedBlogs, { pageSize: pageSize || 10 })
+  return paginate(sortedBlogs, { pageSize })
 }
 
 const { data, url, total, size, currentPage, lastPage } = Astro.props.page

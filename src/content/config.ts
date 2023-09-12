@@ -1,8 +1,9 @@
 import { z, defineCollection } from "astro:content"
+import { formatDate } from "@/utils"
 import config from "@/config"
-import { formatDate } from "@/utils/common"
 
 const posts = defineCollection({
+  // prettier-ignore
   schema: z.object({
     title       : z.string(),
     cover       : z.string().optional(),
