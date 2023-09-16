@@ -37,7 +37,8 @@
   --bg-card-color         : var(--grey-0);
   --bg-list-menu-color    : var(--white);
   --bg-button-color       : var(--white);
-  --bg-selection-color    : hsl(209, 81%, 90%);
+  --bg-selection-color    : hsl(220, 81%, 90%);
+  --bg-code-color         : hsl(220, 81%, 90%);
 
   --font-color            : var(--grey-8);
   --font-subtitle-color   : var(--grey-4);
@@ -56,15 +57,16 @@
   --bg-list-menu-color    : var(--grey-8);
   --bg-button-color       : var(--grey-8);
   --bg-selection-color    : hsla(245, 58%, 51%, 0.4);
+  --bg-code-color         : hsla(245, 28%,28%);
 
-  --font-color            : var(--grey-1);
+  --font-color            : var(--grey-2);
   --font-subtitle-color   : var(--grey-5);
 
   --hover-color           : var(--white-alpha-2);
   --hover-color-1         : var(--white-alpha-3);
   --border-color          : var(--grey-7);
   --border-color-1        : transparent;
-  --scrollbar-thumb-color : hsl(210, 8%, 20%);
+  --scrollbar-thumb-color : hsl(210, 8%, 24%);
 }
 
 /* Light scheme (Default) */

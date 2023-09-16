@@ -1,10 +1,13 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro'
 import ToolBar from '@/components/ToolBar.astro'
-import '/public/github-markdown.css'
+import Toc from '@/components/blog/Toc.astro'
 
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+
+// Styles
+import '@/styles/markdown.scss'
 
 interface Props {
   entry: CollectionEntry<'posts'>
@@ -20,67 +23,81 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
+const { Content, headings } = await entry.render()
 const { title, cover, date, tags } = entry.data
-const isDev = import.meta.env.DEV
-const coverPath = isDev ? `/public/cover/${cover}` : `/cover/${cover}`
 ---
 
 <DefaultLayout>
   <ToolBar back />
-  <header>
-    {
-      cover && (
-        <img class="cover night" src={coverPath} alt="cover" loading="lazy" />
-      )
-    }
-    <p class="date">{date}</p>
-  </header>
-  <main>
+  <div class="wrapper">
+    <Toc data={headings} />
 
-    <article class="markdown-body">
-      <h1>{title}</h1>
-      <Content />
-    </article>
-    <section class="tags">
-      {tags.map((tag: string) => <a class="tag">{tag}</a>)}
-    </section>
-  </main>
+    <main>
+      <article class="markdown-body">
+        <h1>{title}</h1>
+        <Content />
+      </article>
+      <section class="tags">
+        {tags.map((tag: string) => <a class="tag">{tag}</a>)}
+      </section>
+    </main>
+  </div>
 </DefaultLayout>
 
 <style lang="scss">
-  article.markdown-body {
-    color: var(--font-color);
-    background-color: var(--bg-color);
+  header {
+    .cover {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .date {
+      text-align: right;
+      color: var(--font-subtitle-color);
+    }
   }
 
-  .cover {
-    width: 100%;
-    border-radius: 12px;
+  .wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 24px;
+
+    @media (min-width: 1200px) {
+      & {
+        padding: 0 64px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      & {
+        padding: 0 24px;
+      }
+    }
   }
 
-  .date {
-    text-align: right;
-    color: var(--font-subtitle-color);
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
   }
 
   .tags {
     margin: 42px 0;
     padding: 24px 0;
     border-top: 1px dashed var(--border-color);
-  }
 
-  .tag {
-    margin: 8px;
-    padding: 6px 12px;
-    font-size: 12px;
-    text-transform: uppercase;
-    background-color: var(--bg-card-color);
-    border-radius: 6px;
-    cursor: default;
+    .tag {
+      margin: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      background-color: var(--bg-card-color);
+      border-radius: 6px;
+      cursor: default;
 
-    &:first-of-type {
-      margin-left: 0;
+      &:first-of-type {
+        margin-left: 0;
+      }
     }
   }
 </style>

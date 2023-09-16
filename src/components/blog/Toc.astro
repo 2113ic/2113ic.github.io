@@ -1,0 +1,266 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+interface TocItem extends MarkdownHeading {
+  children: TocItem[]
+}
+
+const { data } = Astro.props
+const tocs = genMarkdownToc(data)
+
+function genMarkdownToc(headings: MarkdownHeading[]) {
+  const shallowHeadings = headings.filter(({ depth }) => depth > 1 && depth < 4)
+  const addToToc = (toc: TocItem[], heading: MarkdownHeading) => {
+    const lastItem = toc[toc.length - 1]
+
+    if (!lastItem || heading.depth === lastItem.depth) {
+      toc.push({ ...heading, children: [] })
+    } else if (heading.depth > lastItem.depth) {
+      addToToc(lastItem.children, heading)
+    }
+  }
+
+  const toc: TocItem[] = []
+  for (const heading of shallowHeadings) {
+    addToToc(toc, heading)
+  }
+
+  return toc
+}
+---
+
+<aside class="toc">
+  <div class="toc-title">
+    <span class="toc-title__text">目录</span>
+    <svg
+      class="icon__down-arrow t-180deg t-90deg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6l1.41-1.41z"></path>
+    </svg>
+  </div>
+  <ul class="toc-wrapper is-none">
+    {
+      tocs.map((parent) => (
+        <li class="toc-item">
+          <a href={'#'.concat(parent.slug)}>{parent.text}</a>
+          {parent.children.length > 0 && (
+            <ul class="toc-wrapper">
+              {parent.children.map((child) => (
+                <li class="toc-item">
+                  <a href={'#'.concat(child.slug)}>{child.text}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</aside>
+
+<script>
+  const tocNode = document.querySelector('.toc') as HTMLElement
+  const titleNode = tocNode.querySelector('.toc-title') as HTMLElement
+
+  titleNode.addEventListener('click', toggleToc)
+  window.addEventListener('resize', handleSize)
+
+  let scrollTimeout: number | null
+  window.addEventListener('scroll', function () {
+    if (scrollTimeout) return
+
+    scrollTimeout = requestAnimationFrame(() => {
+      handleScroll()
+      scrollTimeout = null
+    })
+  })
+
+  let status = false
+  function toggleToc(evt: MouseEvent) {
+    const _target = evt.target as HTMLElement
+    const target = _target.closest('.toc-title')
+
+    status = target!.classList.toggle('active')
+    tocNode.classList[status ? 'remove' : 'add']('close')
+  }
+
+  let isFloating = false
+  function handleScroll() {
+    const scrollY = window.scrollY
+    const titleY = titleNode.offsetTop
+
+    if (document.documentElement.offsetWidth > 768) {
+      tocNode.classList.add('scroll')
+      return
+    }
+    if (scrollY > titleY && !isFloating) {
+      tocNode.classList.add('close', 'scroll')
+      titleNode.classList.remove('active')
+      tocNode.style.position = 'fixed'
+      tocNode.style.right = '0'
+      tocNode.style.top = '64px'
+      isFloating = true
+    } else if (scrollY <= titleY && isFloating) {
+      tocNode.classList.remove('scroll')
+      tocNode.style.position = 'relative'
+      tocNode.style.top = '0'
+      isFloating = false
+    }
+  }
+
+  function handleSize() {
+    const flag = document.documentElement.offsetWidth > 768
+
+    if (flag) {
+      tocNode.classList.remove('close')
+      tocNode.style.position = 'sticky'
+      tocNode.style.top = '48px'
+    } else {
+      console.log(123)
+      isFloating = false
+      handleScroll()
+    }
+  }
+</script>
+
+<style lang="scss">
+  .toc {
+    position: sticky;
+    top: 48px;
+    float: right;
+    max-width: 256px;
+    min-width: 160px;
+    margin: 48px 0 0 24px;
+    border-radius: 6px;
+    color: var(--font-subtitle-color);
+    background-color: var(--bg-color);
+    transition: all 0.2s;
+
+    .active .t-180deg {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      float: none;
+
+      position: relative;
+      top: 0;
+
+      margin: 0;
+      max-width: none;
+      min-width: auto;
+      border: 1px solid var(--border-color);
+
+      & > .toc-wrapper {
+        max-height: 0;
+      }
+
+      .active + .toc-wrapper {
+        max-height: 220px;
+        padding-bottom: 12px;
+      }
+    }
+  }
+
+  .scroll .toc-wrapper {
+    max-height: 86vh;
+  }
+
+  .close.scroll {
+    border-radius: 6px 0 0 6px;
+    transform: translateX(12px);
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+      transform: translateX(0);
+
+      .toc-title {
+        padding-left: 6px;
+      }
+    }
+
+    .toc-title {
+      padding: 6px;
+      padding-left: 0;
+
+      .toc-title__text {
+        display: none;
+      }
+    }
+
+    .is-none {
+      display: none;
+    }
+
+    .t-90deg {
+      transform: rotate(90deg);
+    }
+  }
+
+  .toc-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 6px 16px;
+    font-weight: bold;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: width 0.2s ease-in-out;
+
+    .icon__down-arrow {
+      transition: transform 0.2s;
+      vertical-align: bottom;
+    }
+
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+
+  .toc-wrapper {
+    list-style: none;
+    max-height: 75vh;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    transition: max-height 0.3s ease;
+
+    &::-webkit-scrollbar {
+      background-color: transparent;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: none;
+      border-radius: 0;
+    }
+
+    & .toc-wrapper {
+      padding-left: 12px;
+      font-size: 0.85em;
+      border: 0;
+    }
+  }
+
+  .toc-item a {
+    display: block;
+    padding: 6px 16px;
+    border-radius: 3px;
+    transition: color 0.25s;
+
+    &:hover {
+      color: var(--font-color);
+    }
+
+    &:active {
+      color: var(--primary);
+    }
+  }
+</style>

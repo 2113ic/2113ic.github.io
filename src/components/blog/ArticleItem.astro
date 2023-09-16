@@ -18,9 +18,7 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
           <a class="publish" href={data.publish}>{data.publish}</a>
         </div>
         <div class="tags">
-          {
-            data.tags.map((tag: string) => <a class="tag">{tag}</a>)
-          }
+          {data.tags.map((tag: string) => <a class="tag">{tag}</a>)}
         </div>
       </div>
     </div>
@@ -36,8 +34,7 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
 
 <style lang="scss">
   .article-item {
-    padding: 42px 0;
-    border-top: 1px solid var(--border-color);
+    padding-top: 42px;
 
     &:first-of-type {
       border: none;
@@ -54,8 +51,12 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
     &:hover {
       border-bottom: 1px solid;
     }
+
+    &:active {
+      background-color: var(--bg-selection-color);
+    }
   }
-  
+
   .body {
     display: flex;
     margin: 16px 0;
@@ -65,7 +66,7 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
       color: var(--font-color);
 
       .text {
-        margin: 12px 0 16px;
+        margin-bottom: 16px;
       }
     }
 
