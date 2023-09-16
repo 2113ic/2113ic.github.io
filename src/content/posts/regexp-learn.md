@@ -6,8 +6,6 @@ publish     : 'Regexp'
 description : '正则表达式学习笔记'
 ---
 
-## 目录
-
 ## 正则表达式的创建
 
 **方法一**：`new RegExp("pattern"[, "flags"])`
