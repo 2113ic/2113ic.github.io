@@ -1,14 +1,12 @@
 ---
-import ToggleTheme from '@/components/toolbar/ToggleTheme.vue'
-import SearchBox   from '@/components/toolbar/SearchBox.vue'
-import BackBtn     from '@/components/toolbar/BackBtn.vue'
+import ToggleTheme from '@/components/toolbar/ToggleTheme.astro'
+import BackBtn     from '@/components/toolbar/BackBtn.astro'
 
 const { back, search } = Astro.props
 ---
 
 <div class="tool-bar">
-  { back   && <BackBtn client:only="vue" /> }
-  { search && <SearchBox client:only="vue" /> }
-  { !back  && !search && <span></span> }
-  <ToggleTheme client:only="vue" />
+  { back   && <BackBtn /> }
+  { !back && <span></span> }
+  <ToggleTheme />
 </div>

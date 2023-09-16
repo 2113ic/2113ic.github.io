@@ -1,22 +1,15 @@
 {
   "name": "2113ic.github.io",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "personal website",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@astrojs/vue": "^1.2.2",
-    "astro": "^2.3.0",
-    "remark-toc": "^8.0.1",
-    "vue": "^3.2.30"
+    "astro": "^2.3.0"
   },
   "devDependencies": {
     "sass": "^1.57.1"
