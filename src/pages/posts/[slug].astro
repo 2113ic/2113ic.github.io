@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro'
+import PostMate from '@/components/blog/PostMate.astro'
 import ToolBar from '@/components/ToolBar.astro'
 import Toc from '@/components/blog/Toc.astro'
 
@@ -29,49 +30,31 @@ const { title, cover, date, tags } = entry.data
 
 <DefaultLayout>
   <ToolBar />
+
+  <PostMate data={{ cover, date }} />
   <div class="wrapper">
     <Toc data={headings} />
 
-    <main>
-      <article class="markdown-body">
+    <article class="markdown-body">
+      <main>
         <h1>{title}</h1>
         <Content />
-      </article>
+      </main>
       <section class="tags">
         {tags.map((tag: string) => <a class="tag">{tag}</a>)}
       </section>
-    </main>
+    </article>
   </div>
 </DefaultLayout>
 
 <style lang="scss">
-  header {
-    .cover {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .date {
-      text-align: right;
-      color: var(--font-subtitle-color);
-    }
-  }
-
   .wrapper {
     max-width: 1000px;
     margin: 0 auto;
-    padding-left: 24px;
-
-    @media (min-width: 1200px) {
-      & {
-        padding: 0 64px;
-      }
-    }
+    padding: 0 64px;
 
     @media (max-width: 768px) {
-      & {
-        padding: 0 24px;
-      }
+      padding: 0 24px;
     }
   }
 

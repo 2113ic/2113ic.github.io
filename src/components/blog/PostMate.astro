@@ -1,0 +1,59 @@
+---
+const { data } = Astro.props
+const { cover, date } = data
+---
+
+<div class="post-mate">
+  <div class="cover-wrapper">
+    {
+      cover && (
+        <img
+          class="cover"
+          src={'/cover/'.concat(cover)}
+          alt="article cover"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <p class="date">{date}</p>
+</div>
+
+<style>
+  .post-mate {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 64px;
+
+    @media (max-width: 768px) {
+      padding: 0 24px;
+    }
+  }
+
+  .cover-wrapper {
+    --show-max-height: 225px;
+    max-height: var(--show-max-height);
+    border-radius: 6px;
+    overflow: hidden;
+
+    &:hover .cover {
+      --cover-up-height: calc(var(--show-max-height) - 100%);
+      transform: translateY(var(--cover-up-height));
+    }
+
+    .cover {
+      max-width: 100%;
+      transition: transform .8s ease-in-out;
+    }
+
+    @media (min-width: 1200px) {
+      --show-max-height: 600px;
+      max-height: var(--show-max-height);
+    }
+  }
+
+  .date {
+    text-align: right;
+    color: var(--font-subtitle-color);
+  }
+</style>
