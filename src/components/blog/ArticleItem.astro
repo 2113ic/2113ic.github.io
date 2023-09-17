@@ -1,19 +1,18 @@
 ---
 const { data, url } = Astro.props
-const isDev = import.meta.env.DEV
-const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
+const cover = `/cover/${data.cover}`
 ---
 
 <li class="article-item">
-  <div class="head">
-    <a href={url} class="title">{data.title}</a>
-  </div>
-  <div class="body">
-    <div class="content">
+  <div class="main">
+    <div class="head">
+      <a href={url} class="title">{data.title}</a>
+    </div>
+    <div class="article_details">
       <div class="text">{data.description}</div>
 
-      <div class="bottom">
-        <div class="date-and-publish">
+      <div class="article__meta-data">
+        <div class="article__publish-info">
           <span class="date">{data.date} 发布于</span>
           <a class="publish" href={data.publish}>{data.publish}</a>
         </div>
@@ -22,22 +21,50 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
         </div>
       </div>
     </div>
-    {
-      data.cover && (
-        <div class="cover">
-          <img class="night" src={cover} loading="lazy" />
-        </div>
-      )
-    }
   </div>
+  {
+    data.cover && (
+      <div class="cover">
+        <img class="night" src={cover} loading="lazy" />
+      </div>
+    )
+  }
 </li>
 
 <style lang="scss">
   .article-item {
-    padding-top: 42px;
+    display: flex;
+    margin-top: 42px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
 
-    &:first-of-type {
-      border: none;
+    .main {
+      flex: 3;
+
+      .text {
+        color: var(--font-color);
+        margin: 12px 0;
+      }
+    }
+
+    .cover {
+      position: relative;
+      flex: 1;
+
+      img {
+        position: absolute;
+        right: -32px;
+        width: 100%;
+        border-radius: 6px;
+        transform: rotate(-30deg);
+        transition: all 0.2s;
+      }
+
+      &:hover img, img:hover {
+        transform: translate(20%) scale(1.75);
+      }
     }
   }
 
@@ -57,31 +84,11 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
     }
   }
 
-  .body {
+  .article__meta-data {
     display: flex;
-    margin: 16px 0;
-
-    .content {
-      flex: 3;
-      color: var(--font-color);
-
-      .text {
-        margin-bottom: 16px;
-      }
-    }
-
-    .cover {
-      flex: 1;
-
-      img {
-        width: 100%;
-        border-radius: 12px;
-      }
-    }
-  }
-
-  .bottom {
-    line-height: 28px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    line-height: 32px;
     color: var(--font-subtitle-color);
 
     .publish:hover {
@@ -89,7 +96,7 @@ const cover = isDev ? `/public/cover/${data.cover}` : `/cover/${data.cover}`
     }
 
     .tag {
-      margin: 8px;
+      margin-left: 8px;
       padding: 6px 12px;
       font-size: 12px;
       text-transform: uppercase;
