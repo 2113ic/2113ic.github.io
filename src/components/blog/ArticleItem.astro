@@ -55,14 +55,20 @@ const cover = `/cover/${data.cover}`
 
       img {
         position: absolute;
-        right: -32px;
+        right: -38px;
+        top: 12px;
         width: 100%;
         border-radius: 6px;
         transform: rotate(-30deg);
         transition: all 0.2s;
+
+        @media (max-width: 768px) {
+          right: -24px;
+        }
       }
 
-      &:hover img, img:hover {
+      &:hover img,
+      img:hover {
         transform: translate(20%) scale(1.75);
       }
     }
