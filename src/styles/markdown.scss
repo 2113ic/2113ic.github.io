@@ -74,16 +74,8 @@
     border-radius: 3px;
   }
 
-  pre {
-    line-height: normal;
-    padding: 12px;
-    overflow-x: auto;
-    border-radius: 6px;
-
-    code {
-      padding: 0;
-      background-color: transparent;
-    }
+  .expressive-code {
+    margin: 1em 0;
   }
 
   table {
