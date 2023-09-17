@@ -9,7 +9,8 @@
 }
 
 // .night is dark mode for img.
-[theme="dark"] .night {
+[theme="dark"] .night,
+[theme="dark"] .markdown-body img {
   background-color: hsla(223deg, 71%, 16%, 0.6);
   background-blend-mode: darken;
   filter: brightness(80%) grayscale(20%) contrast(1.2);

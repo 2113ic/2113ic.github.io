@@ -76,6 +76,21 @@
 
   .expressive-code {
     margin: 1em 0;
+
+    .frame {
+      box-shadow: none !important;
+    }
+
+    code {
+      line-height: normal !important;
+    }
+
+    button {
+      @media (max-width: 768px) {
+        width: 1.75rem !important;
+        height: 1.75rem !important;
+      }
+    }
   }
 
   table {
