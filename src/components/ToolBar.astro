@@ -1,12 +1,7 @@
 ---
 import ToggleTheme from '@/components/toolbar/ToggleTheme.astro'
-import BackBtn     from '@/components/toolbar/BackBtn.astro'
-
-const { back, search } = Astro.props
 ---
 
 <div class="tool-bar">
-  { back   && <BackBtn /> }
-  { !back && <span></span> }
   <ToggleTheme />
 </div>
