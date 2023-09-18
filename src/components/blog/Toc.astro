@@ -66,6 +66,7 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 <script>
   const tocNode = document.querySelector('.toc') as HTMLElement
   const titleNode = tocNode.querySelector('.toc-title') as HTMLElement
+  const wrapperNode = tocNode.nextElementSibling as HTMLElement
 
   titleNode.addEventListener('click', toggleToc)
   window.addEventListener('resize', handleSize)
@@ -92,43 +93,31 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   let isFloating = false
   function handleScroll() {
     const scrollY = window.scrollY
-    const titleY = titleNode.offsetTop
 
-    if (document.documentElement.offsetWidth > 768) {
-      tocNode.classList.add('scroll')
-      return
-    }
-    if (scrollY > titleY && !isFloating) {
+    if (document.documentElement.offsetWidth > 768) return
+    if (scrollY > wrapperNode.offsetTop && !isFloating) {
       tocNode.classList.add('close', 'scroll')
       titleNode.classList.remove('active')
-      tocNode.style.position = 'fixed'
-      tocNode.style.right = '0'
-      tocNode.style.top = '64px'
       isFloating = true
-    } else if (scrollY <= titleY && isFloating) {
+    } else if (scrollY <= wrapperNode.offsetTop && isFloating) {
       tocNode.classList.remove('scroll')
-      tocNode.style.position = 'relative'
-      tocNode.style.top = '0'
       isFloating = false
     }
   }
 
   function handleSize() {
     const flag = document.documentElement.offsetWidth > 768
-
+    
     if (flag) {
-      tocNode.classList.remove('close')
-      tocNode.style.position = 'sticky'
-      tocNode.style.top = '48px'
+      tocNode.classList.remove('close', 'scroll')
     } else {
-      console.log(123)
       isFloating = false
       handleScroll()
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .toc {
     position: sticky;
     top: 48px;
@@ -168,8 +157,18 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
     }
   }
 
-  .scroll .toc-wrapper {
-    max-height: 86vh;
+  .scroll {
+    position: fixed;
+    right: 0;
+    top: 64px;
+
+    .toc-wrapper {
+      max-height: 86vh;
+    }
+
+    & + .markdown-body {
+      margin-top: 42px;
+    }
   }
 
   .close.scroll {

@@ -60,7 +60,7 @@ const cover = `/cover/${data.cover}`
         width: 100%;
         border-radius: 6px;
         transform: rotate(-30deg);
-        transition: all 0.2s;
+        transition: all .2s .2s;
 
         @media (max-width: 768px) {
           right: -24px;
@@ -75,6 +75,7 @@ const cover = `/cover/${data.cover}`
   }
 
   .title {
+    line-height: 1.75;
     font-weight: 600;
     font-size: 18px;
     color: var(--primary);

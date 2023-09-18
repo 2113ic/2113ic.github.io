@@ -18,7 +18,7 @@ const { cover } = data
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .banner-cover {
     max-width: 1000px;
     margin: 0 auto;
@@ -28,7 +28,7 @@ const { cover } = data
       padding: 0 24px;
     }
   }
-  
+
   .cover-wrapper {
     --show-max-height: 225px;
     max-height: var(--show-max-height);
@@ -47,7 +47,11 @@ const { cover } = data
 
     .cover {
       max-width: 100%;
-      transition: transform 0.8s ease-in-out;
+      transition: transform 0.8s 0.3s ease-in-out;
+
+      @media (max-width: 768px) {
+        transition-delay: 0s;
+      }
     }
   }
 </style>
