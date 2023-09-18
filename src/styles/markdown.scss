@@ -34,11 +34,19 @@
     box-sizing: border-box;
   }
 
-  a {
+  a:not(.tag) {
+    max-width: 100%;
     color: var(--primary);
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+    overflow: hidden;
 
     &:hover {
-      border-bottom: 1px solid;
+      text-decoration-color: var(--font-subtitle-color);
+      text-decoration-line: underline;
+      text-decoration-style: wavy;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
     }
 
     &:active {

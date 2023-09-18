@@ -1,9 +1,9 @@
 ---
 const { data } = Astro.props
-const { cover, date } = data
+const { cover } = data
 ---
 
-<div class="post-mate">
+<div class="banner-cover">
   <div class="cover-wrapper">
     {
       cover && (
@@ -16,11 +16,10 @@ const { cover, date } = data
       )
     }
   </div>
-  <p class="date">{date}</p>
 </div>
 
 <style>
-  .post-mate {
+  .banner-cover {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 64px;
@@ -29,12 +28,17 @@ const { cover, date } = data
       padding: 0 24px;
     }
   }
-
+  
   .cover-wrapper {
     --show-max-height: 225px;
     max-height: var(--show-max-height);
     border-radius: 6px;
     overflow: hidden;
+
+    @media (min-width: 1200px) {
+      --show-max-height: 600px;
+      max-height: var(--show-max-height);
+    }
 
     &:hover .cover {
       --cover-up-height: calc(var(--show-max-height) - 100%);
@@ -43,17 +47,7 @@ const { cover, date } = data
 
     .cover {
       max-width: 100%;
-      transition: transform .8s ease-in-out;
+      transition: transform 0.8s ease-in-out;
     }
-
-    @media (min-width: 1200px) {
-      --show-max-height: 600px;
-      max-height: var(--show-max-height);
-    }
-  }
-
-  .date {
-    text-align: right;
-    color: var(--font-subtitle-color);
   }
 </style>

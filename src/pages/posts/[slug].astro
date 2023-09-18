@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro'
-import PostMate from '@/components/blog/PostMate.astro'
+import BannerCover from '@/components/blog/BannerCover.astro'
 import ToolBar from '@/components/ToolBar.astro'
 import Toc from '@/components/blog/Toc.astro'
 
@@ -31,18 +31,17 @@ const { title, cover, date, tags } = entry.data
 <DefaultLayout>
   <ToolBar />
 
-  <PostMate data={{ cover, date }} />
+  <BannerCover data={{ cover, date }} />
   <div class="wrapper">
     <Toc data={headings} />
 
     <article class="markdown-body">
-      <main>
-        <h1>{title}</h1>
-        <Content />
-      </main>
-      <section class="tags">
+      <h1>{title}</h1>
+      <div class="mate-wrapper">
+        <p class="date">发布于：{date}</p>
         {tags.map((tag: string) => <a class="tag">{tag}</a>)}
-      </section>
+      </div>
+      <Content />
     </article>
   </div>
 </DefaultLayout>
@@ -51,35 +50,46 @@ const { title, cover, date, tags } = entry.data
   .wrapper {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 64px;
+    padding: 64px;
 
     @media (max-width: 768px) {
-      padding: 0 24px;
+      padding: 32px 24px;
+    }
+
+    .markdown-body {
+      max-width: 800px;
+      overflow: hidden;
     }
   }
 
-  main {
-    padding: 0 !important;
-    margin: 0 !important;
+  .mate-wrapper {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    font-size: 12px;
+    color: var(--font-subtitle-color);
     overflow: hidden;
-  }
 
-  .tags {
-    margin: 42px 0;
-    padding: 24px 0;
-    border-top: 1px dashed var(--border-color);
+    .date {
+      margin: 0;
+      margin-right: 24px;
+    }
 
     .tag {
-      margin: 8px;
-      padding: 6px 12px;
-      font-size: 12px;
+      margin-right: 12px;
+      padding: 4px 0;
       text-transform: uppercase;
-      background-color: var(--bg-card-color);
-      border-radius: 6px;
-      cursor: default;
+      border-bottom: 1px dashed var(--border-color);
+      transition: all .2s;
+      cursor: pointer;
 
       &:first-of-type {
         margin-left: 0;
+      }
+
+      &:hover {
+        color: var(--primary);
+        border-bottom: 1px solid;
       }
     }
   }

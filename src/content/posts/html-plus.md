@@ -219,7 +219,7 @@ const dataObj = {
 
 由于，实现这两个指令的代码有点长，就不放在这文章里面了。
 
-感兴趣的可以查看：<https://github.com/2113ic/dot/tree/master/public/package/htmlPlus>
+感兴趣的可以查看：[项目地址](<https://github.com/2113ic/dot/tree/master/public/package/htmlPlus>)
 
 ## 结论
 
