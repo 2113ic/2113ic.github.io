@@ -59,7 +59,11 @@ const { data, url, total, size, currentPage, lastPage } = Astro.props.page
   </main>
 </DefaultLayout>
 
-<style>
+<style lang="scss">
+section {
+  height: 120px;
+  border: 1px solid #eee;
+}
 .article-list {    
   list-style: none;
   padding-left: 0;
