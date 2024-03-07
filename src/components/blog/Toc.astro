@@ -34,13 +34,11 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
     <span class="toc-title__text">目录</span>
     <svg
       class="icon__down-arrow t-180deg t-90deg"
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-    >
+      width="28" height="28" viewBox="0 0 24 24">
       <path
         fill="currentColor"
-        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6l1.41-1.41z"></path>
+        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6l1.41-1.41z">
+      </path>
     </svg>
   </div>
   <ul class="toc-wrapper is-none">
@@ -118,149 +116,149 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 </script>
 
 <style lang="scss" is:global>
-  .toc {
-    position: sticky;
-    top: 48px;
-    z-index: 10;
-    float: right;
-    max-width: 256px;
-    min-width: 160px;
-    margin: 48px 0 0 24px;
-    border-radius: 6px;
-    color: var(--font-subtitle-color);
-    background-color: var(--bg-color);
-    transition: all 0.2s;
+.toc {
+  position: sticky;
+  top: 48px;
+  z-index: 10;
+  float: right;
+  max-width: 256px;
+  min-width: 160px;
+  margin: 48px 0 0 24px;
+  border-radius: 6px;
+  color: var(--font-subtitle-color);
+  background-color: var(--bg-color);
+  transition: all 0.2s;
 
-    .active .t-180deg {
-      transform: rotate(180deg);
-    }
-
-    @media (max-width: 768px) {
-      float: none;
-
-      position: relative;
-      top: 0;
-
-      margin: 0;
-      max-width: none;
-      min-width: auto;
-      border: 1px solid var(--border-color);
-
-      & > .toc-wrapper {
-        max-height: 0;
-      }
-
-      .active + .toc-wrapper {
-        max-height: 220px;
-        padding-bottom: 12px;
-      }
-    }
+  .active .t-180deg {
+    transform: rotate(180deg);
   }
 
-  .scroll {
-    position: fixed;
-    right: 0;
-    top: 64px;
+  @media (max-width: 768px) {
+    float: none;
 
-    .toc-wrapper {
-      max-height: 86vh;
+    position: relative;
+    top: 0;
+
+    margin: 0;
+    max-width: none;
+    min-width: auto;
+    border: 1px solid var(--border-color);
+
+    & > .toc-wrapper {
+      max-height: 0;
     }
 
-    & + .markdown-body {
-      margin-top: 42px;
+    .active + .toc-wrapper {
+      max-height: 220px;
+      padding-bottom: 12px;
     }
   }
+}
 
-  .close.scroll {
-    border-radius: 6px 0 0 6px;
-    transform: translateX(12px);
-    opacity: 0.3;
+.scroll {
+  position: fixed;
+  right: 0;
+  top: 64px;
 
-    &:hover {
-      opacity: 1;
-      transform: translateX(0);
+  .toc-wrapper {
+    max-height: 86vh;
+  }
 
-      .toc-title {
-        padding-left: 6px;
-      }
-    }
+  & + .markdown-body {
+    margin-top: 42px;
+  }
+}
+
+.close.scroll {
+  border-radius: 6px 0 0 6px;
+  transform: translateX(12px);
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 1;
+    transform: translateX(0);
 
     .toc-title {
-      padding: 6px;
-      padding-left: 0;
-
-      .toc-title__text {
-        display: none;
-      }
-    }
-
-    .is-none {
-      display: none;
-    }
-
-    .t-90deg {
-      transform: rotate(90deg);
+      padding-left: 6px;
     }
   }
 
   .toc-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 6px;
+    padding-left: 0;
 
-    padding: 6px 16px;
-    font-weight: bold;
-    overflow: hidden;
-    vertical-align: bottom;
-    transition: width 0.2s ease-in-out;
-
-    .icon__down-arrow {
-      transition: transform 0.2s;
-      vertical-align: bottom;
-    }
-
-    @media (min-width: 769px) {
+    .toc-title__text {
       display: none;
     }
   }
 
-  .toc-wrapper {
-    list-style: none;
-    max-height: 75vh;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
-    transition: max-height 0.3s ease;
-
-    &::-webkit-scrollbar {
-      background-color: transparent;
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border: none;
-      border-radius: 0;
-    }
-
-    & .toc-wrapper {
-      padding-left: 12px;
-      font-size: 0.85em;
-      border: 0;
-    }
+  .is-none {
+    display: none;
   }
 
-  .toc-item a {
-    display: block;
-    padding: 6px 16px;
-    border-radius: 3px;
-    transition: color 0.25s;
-
-    &:hover {
-      color: var(--font-color);
-    }
-
-    &:active {
-      color: var(--primary);
-    }
+  .t-90deg {
+    transform: rotate(90deg);
   }
+}
+
+.toc-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6px 16px;
+  font-weight: bold;
+  overflow: hidden;
+  vertical-align: bottom;
+  transition: width 0.2s ease-in-out;
+
+  .icon__down-arrow {
+    transition: transform 0.2s;
+    vertical-align: bottom;
+  }
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.toc-wrapper {
+  list-style: none;
+  max-height: 75vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: none;
+    border-radius: 0;
+  }
+
+  & .toc-wrapper {
+    padding-left: 12px;
+    font-size: 0.85em;
+    border: 0;
+  }
+}
+
+.toc-item a {
+  display: block;
+  padding: 6px 16px;
+  border-radius: 3px;
+  transition: color 0.25s;
+
+  &:hover {
+    color: var(--font-color);
+  }
+
+  &:active {
+    color: var(--primary);
+  }
+}
 </style>

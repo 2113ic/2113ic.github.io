@@ -1,4 +1,4 @@
-import type { ConfigOption, ResultOption } from '@/types'
+import type { ConfigOption, ResultOption } from '@type/config'
 
 export function defineConfig(option: ConfigOption): ResultOption {
   return {

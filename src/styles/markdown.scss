@@ -1,8 +1,6 @@
 .markdown-body {
-  h1,
-  h2,
-  h3,
-  h4 {
+  
+  h1, h2, h3, h4 {
     margin-top: 24px;
     margin-bottom: 16px;
     line-height: 1.25;
@@ -114,7 +112,7 @@
     overflow: auto;
 
     thead {
-      border-bottom: 1px dashed var(--border-color);
+      border-bottom: 1px dashed var(--bg-code-color);
     }
 
     th {

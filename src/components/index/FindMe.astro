@@ -1,6 +1,6 @@
 ---
-import config from '@/config'
-import type { FindmeItem } from '@/types'
+import config from '@config'
+import type { FindmeItem } from '@type/config'
 
 const { findme } = config
 const styleHeadle = (item: string | undefined) => `--bgColor: ${item || '#343438'}`
@@ -22,38 +22,38 @@ const styleHeadle = (item: string | undefined) => `--bgColor: ${item || '#343438
 </ul>
 
 <style lang="scss">
-  .find-me {
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
+.find-me {
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
 
-    li {
-      float: left;
-      padding: 8px 14px;
-      margin: 10px 10px 0 0;
-      border-radius: 6px;
-      background-color: var(--hover-color);
+  li {
+    float: left;
+    padding: 8px 14px;
+    margin: 10px 10px 0 0;
+    border-radius: 6px;
+    background-color: var(--bg-card-color);
 
-      &:hover {
-        color: #fff;
-        background-color: var(--bgColor);
-      }
-    }
-
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &:hover {
+      color: #fff;
+      background-color: var(--bgColor);
     }
   }
 
-  .icon {
-    width: 20px;
-    height: 20px;
-    font-size: 0;
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
 
-  .text {
-    margin-left: 5px;
-  }
+.icon {
+  width: 20px;
+  height: 20px;
+  font-size: 0;
+}
+
+.text {
+  margin-left: 5px;
+}
 </style>

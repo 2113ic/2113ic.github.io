@@ -1,31 +1,31 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro'
-import BannerCover from '@/components/blog/BannerCover.astro'
-import ToolBar from '@/components/ToolBar.astro'
-import Toc from '@/components/blog/Toc.astro'
+import DefaultLayout from "@layout/DefaultLayout.astro";
+import BannerCover from "@comp/blog/BannerCover.astro";
+import ToolBar from "@comp/ToolBar.astro";
+import Toc from "@comp/blog/Toc.astro";
 
-import { getCollection } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 // Styles
-import '@/styles/markdown.scss'
+import "@style/markdown.scss";
 
 interface Props {
-  entry: CollectionEntry<'posts'>
+  entry: CollectionEntry<"posts">;
 }
 
 export async function getStaticPaths() {
-  const postsEntries = await getCollection('posts')
+  const postsEntries = await getCollection("posts");
 
   return postsEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
-  }))
+  }));
 }
 
-const { entry } = Astro.props
-const { Content, headings } = await entry.render()
-const { title, cover, date, tags } = entry.data
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+const { title, cover, date, tags } = entry.data;
 ---
 
 <DefaultLayout>
@@ -47,50 +47,50 @@ const { title, cover, date, tags } = entry.data
 </DefaultLayout>
 
 <style lang="scss">
-  .wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 64px;
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 64px;
 
-    @media (max-width: 768px) {
-      padding: 32px 24px;
-    }
-
-    .markdown-body {
-      max-width: 800px;
-      overflow: hidden;
-    }
+  @media (max-width: 768px) {
+    padding: 32px 24px;
   }
 
-  .mate-wrapper {
-    display: flex;
-    align-items: center;
-    padding-bottom: 16px;
-    font-size: 12px;
-    color: var(--font-subtitle-color);
+  .markdown-body {
+    max-width: 800px;
     overflow: hidden;
+  }
+}
 
-    .date {
-      margin: 0;
-      margin-right: 24px;
+.mate-wrapper {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+  font-size: 12px;
+  color: var(--font-subtitle-color);
+  overflow: hidden;
+
+  .date {
+    margin: 0;
+    margin-right: 24px;
+  }
+
+  .tag {
+    margin-right: 12px;
+    padding: 4px 0;
+    text-transform: uppercase;
+    border-bottom: 1px dashed var(--border-color);
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-left: 0;
     }
 
-    .tag {
-      margin-right: 12px;
-      padding: 4px 0;
-      text-transform: uppercase;
-      border-bottom: 1px dashed var(--border-color);
-      transition: all 0.2s;
-      cursor: pointer;
-
-      &:first-of-type {
-        margin-left: 0;
-      }
-
-      &:hover {
-        color: var(--primary);
-        border-bottom: 1px solid;
-      }
+    &:hover {
+      color: var(--primary);
+      border-bottom: 1px solid;
     }
   }
+}
 </style>

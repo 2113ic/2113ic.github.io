@@ -1,10 +1,10 @@
 ---
-import DefaultLayout  from '@/layouts/DefaultLayout.astro'
-import ToolBar        from '@/components/ToolBar.astro'
-import ArticleItem    from '@/components/blog/ArticleItem.astro'
-import PaginationBox  from '@/components/blog/PaginationBox.astro'
+import DefaultLayout  from '@layout/DefaultLayout.astro'
+import ToolBar        from '@comp/ToolBar.astro'
+import ArticleItem    from '@comp/blog/ArticleItem.astro'
+import PaginationBox  from '@comp/blog/PaginationBox.astro'
 import { getCollection } from 'astro:content'
-import config from '@/config'
+import config from '@config'
 
 export async function getStaticPaths({ paginate }) {
   const isNotDraft = ({ data }) => data.isDraft === false
@@ -21,6 +21,27 @@ export async function getStaticPaths({ paginate }) {
   return paginate(sortedBlogs, { pageSize })
 }
 
+interface Props {
+  page: {
+    data: {
+      data: {
+        title: string
+        description: string
+        publish: string
+        date: string
+        tags: string[]
+        cover: string
+      }
+      slug: string
+    }[],
+    url: string,
+    total: number,
+    size: number,
+    currentPage: number,
+    lastPage: number
+  }
+}
+
 const { data, url, total, size, currentPage, lastPage } = Astro.props.page
 ---
 
@@ -29,33 +50,23 @@ const { data, url, total, size, currentPage, lastPage } = Astro.props.page
 
   <main>
     <article>
-      <ul class="article-list">
-        {
-          data.map(({ data, slug }) => (
-            <ArticleItem data={data} url={`/posts/${slug}`} />
-          ))
-        }
-      </ul>
       {data.length === 0 && <div class="empty">这里空空如也</div>}
+      <ul class="article-list">
+        {data.map(({ data, slug }) => <ArticleItem data={data} url={`/posts/${slug}`} />)}
+      </ul>
     </article>
-    <PaginationBox
-      url={url}
-      total={total}
-      size={size}
-      cur={currentPage}
-      lastPage={lastPage}
-    />
+    <PaginationBox url={url} total={total} size={size} cur={currentPage} lastPage={lastPage} />
   </main>
 </DefaultLayout>
 
 <style>
-  .article-list {    
-    list-style: none;
-    padding-left: 0;
-    color: var(--primary);
-  }
+.article-list {    
+  list-style: none;
+  padding-left: 0;
+  color: var(--primary);
+}
 
-  .empty {
-    text-align: center;
-  }
+.empty {
+  text-align: center;
+}
 </style>

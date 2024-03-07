@@ -1,0 +1,26 @@
+@use 'sass:string';
+
+@function join($list) {
+  $result: '';
+
+  @each $item in $list {
+    @if $item != '' {
+      $result: $result + '-' + $item;
+    }
+  }
+  @return $result;
+}
+
+@function get($list...) {
+  @return var(-- + join($list));
+}
+
+@function gets($lists...) {
+  $result: '';
+
+  @each $list in $lists {
+    $result: $result + var(-- + join($list)) + ' ';
+  }
+
+  @return string.slice($result, 1, -2);
+}

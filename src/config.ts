@@ -1,12 +1,20 @@
-import { defineConfig } from '@/utils/config'
+import { defineConfig } from '@util/config'
+import { camelCase } from '@util/common'
 
-import githubIcon from '@/assets/svgs/github.svg?raw'
-import twitterIcon from '@/assets/svgs/twitter.svg?raw'
-import figmaIcon from '@/assets/svgs/figma.svg?raw'
-import gitIcon from '@/assets/svgs/git.svg?raw'
-import dotIcon from '@/assets/svgs/dot.svg?raw'
-import blogIcon from '@/assets/svgs/blog.svg?raw'
-import noteBookIcon from '@/assets/svgs/note-book.svg?raw'
+function getIcons() {
+  const icons: Record<string, string> = {}
+  const svgs = import.meta.glob('@asset/svgs/*.svg', 
+    { query: '?raw', eager: true, import: 'default' }
+  )
+
+  for (const svg in svgs) {
+    const name = svg.match(/svgs\/(.+?)\.svg$/)![1]
+    // icons[camelCase(name)] = svgs[svg] as string
+    icons[name] = svgs[svg] as string
+  }
+
+  return icons
+}
 
 const links = {
   github: 'https://github.com/2113ic',
@@ -18,6 +26,8 @@ const links = {
   vocabulary: 'https://github.com/2113ic/Mini_myVocabulary',
 }
 
+const icons = getIcons()
+
 export default defineConfig({
   title: '默小言的空间',
   name: '2113ic',
@@ -25,42 +35,42 @@ export default defineConfig({
   findme: [
     {
       url: links.github,
-      icon: githubIcon,
+      icon: icons.github,
       label: 'Github',
     },
     {
       url: links.twitter,
-      icon: twitterIcon,
+      icon: icons.twitter,
       background: '#00acee',
     },
     {
       url: links.figma,
-      icon: figmaIcon,
+      icon: icons.figma,
       background: '#f7c104',
     },
   ],
   projects: [
     {
       url: links.dot,
-      icon: dotIcon,
+      icon: icons.dot,
       title: '我的兴趣作品',
       summary: 'my personal hobby projects',
     },
     {
       url: links.blog,
-      icon: blogIcon,
+      icon: icons.blog,
       title: '默小言的空间',
       summary: '简陋的个人博客',
     },
     {
       url: links.gitNote,
-      icon: gitIcon,
+      icon: icons.git,
       title: 'Git Learn Note',
       summary: '我的Git学习笔记',
     },
     {
       url: links.vocabulary,
-      icon: noteBookIcon,
+      icon: icons.noteBook,
       title: 'My Vocabulary',
       summary: '我的词汇量小程序（辅助记单词的小工具',
     },

@@ -2,10 +2,17 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "preserve",
     "strictNullChecks": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@config": ["src/config.ts"],
+      "@asset/*": ["src/assets/*"],
+      "@comp/*": ["src/components/*"],
+      "@page/*": ["src/pages/*"],
+      "@style/*": ["src/styles/*"],
+      "@util/*": ["src/utils/*"],
+      "@type/*": ["src/types/*"],
+      "@content/*": ["src/content/*"],
+      "@layout/*": ["src/layouts/*"],
     }
   },
   "include": ["./src/**/*.ts", "./src/**/*.astro"]
