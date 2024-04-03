@@ -11,13 +11,13 @@ import type { CollectionEntry } from "astro:content";
 import "@style/markdown.scss";
 
 interface Props {
-  entry: CollectionEntry<"posts">;
+  entry: CollectionEntry<"Posts">;
 }
 
 export async function getStaticPaths() {
-  const postsEntries = await getCollection("posts");
+  const posts = await getCollection("Posts");
 
-  return postsEntries.map((entry) => ({
+  return posts.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
@@ -38,7 +38,7 @@ const { title, cover, date, tags } = entry.data;
     <article class="markdown-body">
       <h1>{title}</h1>
       <div class="mate-wrapper">
-        <p class="date">发布于：{date}</p>
+        <p class="date">最后修改：{date}</p>
         {tags.map((tag: string) => <a class="tag">{tag}</a>)}
       </div>
       <Content />

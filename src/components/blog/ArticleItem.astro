@@ -1,6 +1,8 @@
 ---
-const { data, url } = Astro.props
+const { data, url, publish } = Astro.props
 const cover = `/cover/${data.cover}`
+
+console.log(publish)
 ---
 
 <li class="article-item">
@@ -9,12 +11,12 @@ const cover = `/cover/${data.cover}`
       <a href={url} class="title">{data.title}</a>
     </div>
     <div class="article_details">
-      <div class="text">{data.description}</div>
+      <div class="text">{data.desc}</div>
 
       <div class="article__meta-data">
         <div class="article__publish-info">
           <span class="date">{data.date} 发布于</span>
-          <a class="publish" href={data.publish}>{data.publish}</a>
+          <a class="publish" href={publish}>{publish}</a>
         </div>
         <div class="tags">
           {data.tags.map((tag: string) => <a class="tag">{tag}</a>)}
@@ -77,7 +79,6 @@ const cover = `/cover/${data.cover}`
 
 .title {
   line-height: 1.75;
-  font-weight: 600;
   font-size: 18px;
   color: var(--primary);
   border-bottom: 1px dashed var(--border-color);
@@ -96,8 +97,8 @@ const cover = `/cover/${data.cover}`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  font-size: 14px;
   color: var(--font-subtitle-color);
+  font-size: 14px;
 
   .publish:hover {
     border-bottom: 1px solid var(--border-color);

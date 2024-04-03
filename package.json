@@ -8,12 +8,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/mdx": "^2.2.3",
     "@icxy/theme": "^0.0.3",
-    "astro": "^4.4.13",
+    "astro": "^4.5.14",
     "astro-expressive-code": "^0.30.2"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.4.21",
-    "sass": "^1.71.1"
+    "sass": "^1.72.0"
   }
 }

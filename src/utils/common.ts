@@ -17,8 +17,3 @@ export function formatDate(date: string, delimiter?: string) {
 export function patchZero(str: string) {
   return +str < 10 ? `0${str}` : str
 }
-
-// note-book -> noteBook
-export function camelCase(str: string) {
-  return str.replace(/-([a-z])/g, (match, p1) => p1.toUpperCase())
-}

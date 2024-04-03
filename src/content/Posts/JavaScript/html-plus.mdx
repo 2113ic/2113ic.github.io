@@ -1,10 +1,9 @@
 ---
-title       : '折腾|一次原生项目的最佳实践的探索'
-date        : '2023-5-23'
-tags        : ['JavaScript', '折腾']
-publish     : 'JavaScript'
-cover       : 'htmlPlus.webp'
-description : '关于我重构项目时的一番折腾……'
+title: 折腾|一次原生项目的最佳实践的探索
+date : 2023-5-23
+cover: htmlPlus.webp
+tags: [JavaScript]
+desc : 关于我重构项目时的一番折腾……
 ---
 
 ## 前言
@@ -40,7 +39,7 @@ UI 组件化似乎没法达成了，但我想了想业务逻辑还是有可能�
 
 ```js
 class ExampleBox {
-  constructor(selector) {
+  constructor(selector) {
     this.$el = document.querySelector(selector)
   }
 }
@@ -106,7 +105,7 @@ console.log(new ExampleBox('.example-box'))
 
 打印 `ExampleBox` 实例就可以看到：
 
-![Alt text](</images/html-plus/1.png>)
+![Alt text](/images/html-plus/1.png)
 
 看来是成功了😂。
 

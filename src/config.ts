@@ -1,7 +1,11 @@
 import { defineConfig } from '@util/config'
-import { camelCase } from '@util/common'
 
 function getIcons() {
+  // note-book -> noteBook
+  function camelCase(str: string) {
+    return str.replace(/-([a-z])/g, (match, p1) => p1.toUpperCase())
+  }
+
   const icons: Record<string, string> = {}
   const svgs = import.meta.glob('@asset/svgs/*.svg', 
     { query: '?raw', eager: true, import: 'default' }
@@ -9,8 +13,7 @@ function getIcons() {
 
   for (const svg in svgs) {
     const name = svg.match(/svgs\/(.+?)\.svg$/)![1]
-    // icons[camelCase(name)] = svgs[svg] as string
-    icons[name] = svgs[svg] as string
+    icons[camelCase(name)] = svgs[svg] as string
   }
 
   return icons
@@ -53,14 +56,14 @@ export default defineConfig({
     {
       url: links.dot,
       icon: icons.dot,
-      title: '我的兴趣作品',
+      title: 'Dot',
       summary: 'my personal hobby projects',
     },
     {
       url: links.blog,
       icon: icons.blog,
-      title: '默小言的空间',
-      summary: '简陋的个人博客',
+      title: '2113ic.github.io',
+      summary: '个人博客（Astro',
     },
     {
       url: links.gitNote,

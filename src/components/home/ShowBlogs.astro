@@ -3,16 +3,15 @@ import HeadLine from './HeadLine.astro'
 import { getCollection } from 'astro:content'
 import config from '@config'
 
-const isNotDraft = ({ data }) => data.draft !== true
-const posts = await getCollection('posts', isNotDraft)
-const { dateDelimiter: delimiter, showNum } = config.blogs
+const isProd = import.meta.env.PROD
+const isNotDraft = ({ data }) => isProd ? data.draft === false : true
+const posts = await getCollection('Posts', isNotDraft)
+const { showNum } = config.blogs
 
 const sortedBlogs = posts.sort((a, b) => {
-  const dateA = +a.data.date.replaceAll(delimiter, '')
-  const dateB = +b.data.date.replaceAll(delimiter, '')
-
-  return dateB - dateA
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 })
+
 const showBlogs = sortedBlogs.slice(0, showNum)
 ---
 

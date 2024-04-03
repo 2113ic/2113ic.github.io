@@ -6,43 +6,33 @@ import PaginationBox  from '@comp/blog/PaginationBox.astro'
 import { getCollection } from 'astro:content'
 import config from '@config'
 
+import type { BlogProps } from '@type/common'
+import type { Page } from 'astro'
+
+interface Props {
+  page: Page<BlogProps>
+}
+
 export async function getStaticPaths({ paginate }) {
-  const isNotDraft = ({ data }) => data.isDraft === false
-  const posts = await getCollection('posts', isNotDraft)
-  const { dateDelimiter, pageSize } = config.blogs
-  const delimiter = dateDelimiter || '-'
+  const isProd = import.meta.env.PROD
+  const isNotDraft = ({ data }) => isProd ? data.draft === false : true
+  const posts = await getCollection('Posts', isNotDraft)
+  const { pageSize } = config.blogs
 
   const sortedBlogs = posts.sort((a, b) => {
-    const dateA = +a.data.date.replaceAll(delimiter, '')
-    const dateB = +b.data.date.replaceAll(delimiter, '')
-
-    return dateB - dateA
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
   })
   return paginate(sortedBlogs, { pageSize })
 }
 
-interface Props {
-  page: {
-    data: {
-      data: {
-        title: string
-        description: string
-        publish: string
-        date: string
-        tags: string[]
-        cover: string
-      }
-      slug: string
-    }[],
-    url: string,
-    total: number,
-    size: number,
-    currentPage: number,
-    lastPage: number
-  }
-}
-
-const { data, url, total, size, currentPage, lastPage } = Astro.props.page
+const {
+  data,
+  url, 
+  total, 
+  size, 
+  currentPage, 
+  lastPage 
+} = Astro.props.page
 ---
 
 <DefaultLayout>
@@ -52,10 +42,24 @@ const { data, url, total, size, currentPage, lastPage } = Astro.props.page
     <article>
       {data.length === 0 && <div class="empty">这里空空如也</div>}
       <ul class="article-list">
-        {data.map(({ data, slug }) => <ArticleItem data={data} url={`/posts/${slug}`} />)}
+        {
+          data.map(({ data, slug }) => 
+            <ArticleItem
+              data={data}
+              publish={slug.split('/').at(0)}
+              url={`/posts/${slug}`}
+            />
+          )
+        }
       </ul>
     </article>
-    <PaginationBox url={url} total={total} size={size} cur={currentPage} lastPage={lastPage} />
+    <PaginationBox
+      url={url}
+      total={total}
+      size={size}
+      cur={currentPage}
+      lastPage={lastPage}
+    />
   </main>
 </DefaultLayout>
 
