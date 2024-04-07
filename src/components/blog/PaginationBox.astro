@@ -1,5 +1,6 @@
 ---
 import config from '@config'
+import { propsToFilename } from 'astro/assets/utils'
 
 const pagerCount = config.blogs.pagerCount
 const { total, size, cur, lastPage, url } = Astro.props
@@ -47,6 +48,9 @@ function getLists(cur: number): number[] {
   const result = [] as number[]
 
   if (cur > halfPagerCount) {
+    while (cur + middlePageIndex + 1 > lastPage) {
+      cur--
+    }
     const min = cur - middlePageIndex
     const max = cur + middlePageIndex
 
@@ -54,12 +58,12 @@ function getLists(cur: number): number[] {
       result.push(i)
     }
   } else {
-    for (let i = 2; i < halfPagerCount; i++) {
+    for (let i = 2; i < pagerCount; i++) {
       result.push(i)
     }
   }
 
-  return result.filter((item) => 1 < item && item <= lastPage)
+  return result.filter((item) => 1 < item && item < lastPage)
 }
 ---
 
