@@ -1,7 +1,7 @@
 ---
 title: 'JavaScript 之正则表达式'
 date : '2022-7-2'
-tags: [JavaScript, Notes]
+tags: ['JavaScript', 'Notes']
 desc : '正则表达式学习笔记'
 ---
 
