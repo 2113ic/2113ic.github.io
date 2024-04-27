@@ -1,5 +1,5 @@
 ---
-title: 'test1'
+title: 'test2'
 date : '2024-04-14'
 desc : '发布文章测试1'
 tags : ['Test']
