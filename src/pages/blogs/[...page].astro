@@ -37,8 +37,10 @@ const {
 
 <DefaultLayout>
   <ToolBar />
-
   <main>
+    <div class="search-box">
+      <input type="text" placeholder="请输入">
+    </div>
     <article>
       {data.length === 0 && <div class="empty">这里空空如也</div>}
       <ul class="article-list">
@@ -68,6 +70,21 @@ section {
   height: 120px;
   border: 1px solid #eee;
 }
+
+.search-box input {
+  outline: 0;
+  max-width: 225px;
+  height: 36px;
+  padding: 4px 8px;
+  border: 1px solid var(--grey-3);
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  &:focus {
+    border: 2px solid var(--primary);
+  }
+}
+
 .article-list {    
   list-style: none;
   padding-left: 0;

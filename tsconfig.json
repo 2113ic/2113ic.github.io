@@ -1,9 +1,10 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "C:/Users/xiaoyan/Documents/Code/Web/2113ic.github.io",
     "strictNullChecks": true,
     "paths": {
+      "@api/*": ["src/api/*"],
       "@config": ["src/config.ts"],
       "@asset/*": ["src/assets/*"],
       "@comp/*": ["src/components/*"],
@@ -12,8 +13,13 @@
       "@util/*": ["src/utils/*"],
       "@type/*": ["src/types/*"],
       "@content/*": ["src/content/*"],
-      "@layout/*": ["src/layouts/*"],
-    }
+      "@layout/*": ["src/layouts/*"]
+    },
+    "jsx": "preserve"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.astro"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.astro",
+    "./src/**/*.vue"
+  ]
 }

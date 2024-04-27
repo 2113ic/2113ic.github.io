@@ -1,22 +1,22 @@
 ---
-import config from '@config'
-import type { FindmeItem } from '@type/config'
+import { supabase } from '@api/supabase'
 
-const { findme } = config
-const styleHeadle = (item: string | undefined) => `--bgColor: ${item || '#343438'}`
+async function getFindmeList() {
+  return await supabase.from('findme').select('*')
+}
 ---
 
 <ul class="find-me">
   {
-    findme!.map((item: FindmeItem) => {
-      return (
-        <li style={styleHeadle(item.background)}>
+    getFindmeList().then(({data}) => {
+      return data!.map((item) => (
+        <li>
           <a href={item.url}>
             <div class="icon" set:html={item.icon} />
-            {item.label && <div class="text">{item.label}</div>}
+            {item.name && <div class="text">{item.name}</div>}
           </a>
         </li>
-      )
+      ))
     })
   }
 </ul>
@@ -33,11 +33,6 @@ const styleHeadle = (item: string | undefined) => `--bgColor: ${item || '#343438
     margin: 10px 10px 0 0;
     border-radius: 6px;
     background-color: var(--bg-card-color);
-
-    &:hover {
-      color: #fff;
-      background-color: var(--bgColor);
-    }
   }
 
   a {

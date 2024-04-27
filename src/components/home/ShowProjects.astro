@@ -1,25 +1,32 @@
 ---
 import HeadLine from './HeadLine.astro'
-import config from '@config'
+import { supabase } from '@api/supabase'
 
-const { projects } = config
+async function getProjects() {
+  return await supabase.from('project').select('*')
+}
 ---
 
 <div class="projects">
-  {projects!.length !== 0 && <HeadLine>Projects</HeadLine>}
+  <HeadLine more="https://github.com/2113ic">Projects</HeadLine>
 
   <div class="content">
     {
-      projects!.map((project) => {
-        return (
-          <a class="project" href={project.url} target="_blank">
-            <div class="icon" set:html={project.icon} />
-            <div class="info">
-              <div class="title">{project.title}</div>
-              <div class="summary">{project.summary}</div>
-            </div>
-          </a>
-        )
+      getProjects().then(({ data }) => {
+        return data!.map(({ metadata: project }) => {
+          const max = 360, min = 1
+          const h = Math.floor(Math.random() * (max - min + 1)) + min
+
+          return (
+            <a class="project" href={project.html_url} target="_blank">
+              <div class="icon" style={`--x-color: hsl(${h}, 90%, 80%)`}>{project.name.at(0)}</div>
+              <div class="info">
+                <div class="title">{project.name}</div>
+                <div class="summary">{project.description}</div>
+              </div>
+            </a>
+          )
+        })
       })
     }
   </div>
@@ -27,10 +34,15 @@ const { projects } = config
 
 <style lang="scss">
 .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 36px;
-  height: 36px;
+  height: 100%;
+  padding-top: 4px;
   margin-right: 12px;
-  font-size: 0;
+  color: var(--x-color);
+  font: 600 24px BEYNO;
 }
 
 .title {
