@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "baseUrl": "C:/Users/xiaoyan/Documents/Code/Web/2113ic.github.io",
+    "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
       "@api/*": ["src/api/*"],

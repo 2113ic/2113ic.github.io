@@ -8,12 +8,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/vue": "^4.1.0",
     "@icxy/theme": "^0.0.3",
     "@supabase/supabase-js": "^2.42.7",
     "astro": "^4.5.14",
-    "astro-expressive-code": "^0.30.2",
-    "vue": "^3.4.25"
+    "astro-expressive-code": "^0.30.2"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.4.21",

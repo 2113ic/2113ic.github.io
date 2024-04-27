@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import expressiveCode from 'astro-expressive-code'
-import vue from "@astrojs/vue"
 
 const utils = `@use '@style/utils' as *;`
 
@@ -9,7 +8,6 @@ export default defineConfig({
   scopedStyleStrategy: 'where',
   integrations: [
     expressiveCode({ themes: ['nord'] }), 
-    vue()
   ],
   vite: {
     css: {
