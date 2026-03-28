@@ -44,11 +44,13 @@ export default defineConfig({
     {
       url: links.twitter,
       icon: icons.twitter,
+      label: 'Twitter',
       background: '#00acee',
     },
     {
       url: links.figma,
       icon: icons.figma,
+      label: 'Figma',
       background: '#f7c104',
     },
   ],
@@ -56,26 +58,26 @@ export default defineConfig({
     {
       url: links.dot,
       icon: icons.dot,
-      title: 'Dot',
+      title: 'Experiment',
       summary: 'my personal hobby projects',
     },
     {
       url: links.blog,
       icon: icons.blog,
       title: '2113ic.github.io',
-      summary: '个人博客（Astro',
+      summary: '个人博客',
     },
     {
       url: links.gitNote,
       icon: icons.git,
       title: 'Git Learn Note',
-      summary: '我的Git学习笔记',
+      summary: '我的 Git 学习笔记',
     },
     {
       url: links.vocabulary,
       icon: icons.noteBook,
-      title: 'My Vocabulary',
-      summary: '我的词汇量小程序（辅助记单词的小工具',
+      title: 'Vocabulary Book',
+      summary: '我的词汇量小程序(辅助记单词的小工具',
     },
   ],
 })
