@@ -1,0 +1,52 @@
+---
+import DefaultLayout from '@layout/DefaultLayout.astro'
+import ToolBar from '@comp/ToolBar.astro'
+---
+
+<DefaultLayout title="页面未找到">
+  <ToolBar />
+  <main class="not-found">
+    <h1>404</h1>
+    <p>你来到了一片荒芜之地</p>
+    <a class="back-home" href="/">返回首页</a>
+  </main>
+</DefaultLayout>
+
+<style>
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--x-font-sub);
+  line-height: 1;
+}
+
+p {
+  margin: 16px 0 32px;
+  color: var(--x-font-sub);
+  font-size: 1.125rem;
+}
+
+.back-home {
+  display: inline-block;
+  padding: 10px 24px;
+  color: var(--x-white);
+  background-color: var(--x-primary);
+  border-radius: 6px;
+  font-size: 14px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+</style>

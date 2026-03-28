@@ -8,13 +8,12 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@icxy/theme": "^0.0.3",
-    "@supabase/supabase-js": "^2.42.7",
-    "astro": "^4.5.14",
-    "astro-expressive-code": "^0.30.2"
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.1",
+    "astro-expressive-code": "^0.41.7"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.21",
-    "sass": "^1.72.0"
-  }
+    "sass": "^1.98.0"
+  },
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }

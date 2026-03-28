@@ -1,13 +1,17 @@
 import { defineConfig } from 'astro/config'
+import { fileURLToPath } from 'node:url'
 import expressiveCode from 'astro-expressive-code'
+import sitemap from '@astrojs/sitemap'
 
-const utils = `@use '@style/utils' as *;`
+const stylePath = fileURLToPath(new URL('./src/styles', import.meta.url))
+const utils = `@use '${stylePath.replace(/\\/g, '/')}/utils' as *;`
 
 export default defineConfig({
   site: 'https://2113ic.github.io/',
-  scopedStyleStrategy: 'where',
+  compressHTML: true,
   integrations: [
-    expressiveCode({ themes: ['nord'] }), 
+    expressiveCode({ themes: ['nord'] }),
+    sitemap(),
   ],
   vite: {
     css: {

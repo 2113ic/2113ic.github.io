@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
-      "@api/*": ["src/api/*"],
-      "@config": ["src/config.ts"],
+"@config": ["src/config.ts"],
       "@asset/*": ["src/assets/*"],
       "@comp/*": ["src/components/*"],
       "@page/*": ["src/pages/*"],
@@ -19,7 +18,6 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./src/**/*.astro",
-    "./src/**/*.vue"
+    "./src/**/*.astro"
   ]
 }

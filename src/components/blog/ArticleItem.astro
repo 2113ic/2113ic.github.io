@@ -36,7 +36,7 @@ const cover = `/cover/${data.cover}`
   display: flex;
   margin-top: 42px;
   padding: 24px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--x-border);
   border-radius: 6px;
   overflow: hidden;
 
@@ -45,7 +45,7 @@ const cover = `/cover/${data.cover}`
 
     .text {
       font-size: 14px;
-      color: var(--font-color);
+      color: var(--x-font);
       margin: 12px 0;
     }
   }
@@ -78,8 +78,8 @@ const cover = `/cover/${data.cover}`
 .title {
   line-height: 1.75;
   font-size: 18px;
-  color: var(--primary);
-  border-bottom: 1px dashed var(--border-color);
+  color: var(--x-primary);
+  border-bottom: 1px dashed var(--x-border);
   transition: color 0.3s;
 
   &:hover {
@@ -87,7 +87,7 @@ const cover = `/cover/${data.cover}`
   }
 
   &:active {
-    background-color: var(--bg-selection-color);
+    background-color: var(--x-bg-selection);
   }
 }
 
@@ -95,11 +95,11 @@ const cover = `/cover/${data.cover}`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  color: var(--font-subtitle-color);
+  color: var(--x-font-sub);
   font-size: 14px;
 
   .publish:hover {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--x-border);
   }
 
   .tag {
@@ -107,7 +107,7 @@ const cover = `/cover/${data.cover}`
     padding: 4px 6px;
     font-size: 12px;
     text-transform: uppercase;
-    background-color: var(--bg-card-color);
+    background-color: var(--x-bg-card);
     border-radius: 4px;
     cursor: default;
 

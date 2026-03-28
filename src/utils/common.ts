@@ -15,5 +15,5 @@ export function formatDate(date: string, delimiter?: string) {
  * @param {string} str - The string to pad with a zero
  */
 export function patchZero(str: string) {
-  return +str < 10 ? `0${str}` : str
+  return str.padStart(2, '0')
 }

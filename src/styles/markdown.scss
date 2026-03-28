@@ -1,94 +1,154 @@
 .markdown-body {
-  
-  h1, h2, h3, h4 {
-    margin-top: 24px;
-    margin-bottom: 16px;
-    line-height: 1.25;
+  font-size: 1rem;
+  line-height: 1.8;
+  word-break: break-word;
+
+  // ============================================
+  // Headings
+  // ============================================
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    line-height: 1.35;
+    font-family: var(--x-font-heading);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    // Anchor link offset for fixed headers
+    &[id] {
+      scroll-margin-top: 80px;
+    }
   }
 
   h1 {
-    margin: 0.67em 0;
-    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.875em;
+    letter-spacing: -0.03em;
   }
 
   h2 {
-    padding-bottom: 0.3em;
-    font-size: 1.5em;
+    padding-bottom: 0.35em;
+    font-size: 1.4em;
+    border-bottom: 1px solid var(--x-border);
   }
 
   h3 {
-    font-size: 1.25em;
+    font-size: 1.15em;
   }
 
   h4 {
     font-size: 1em;
+    color: var(--x-font-sub);
   }
 
-  img {
-    display: block;
-    max-width: 100%;
-    border: 2px solid var(--border-color);
-    border-radius: 6px;
-    box-sizing: border-box;
+  // ============================================
+  // Paragraph & text
+  // ============================================
+
+  p {
+    margin: 0 0 1.25em;
+    line-height: 1.8;
   }
+
+  strong {
+    font-weight: 600;
+    color: var(--x-font);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  // ============================================
+  // Links
+  // ============================================
 
   a:not(.tag) {
-    max-width: 100%;
-    color: var(--primary);
-    text-overflow: ellipsis;
-    vertical-align: bottom;
-    overflow: hidden;
+    color: var(--x-primary);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.2s;
 
     &:hover {
-      text-decoration-color: var(--font-subtitle-color);
-      text-decoration-line: underline;
-      text-decoration-style: wavy;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-    }
-
-    &:active {
-      background-color: var(--bg-selection-color);
+      text-decoration-color: var(--x-primary);
     }
   }
 
-  ul,
-  ol {
-    padding-left: 1.25em;
+  // ============================================
+  // Lists
+  // ============================================
+
+  ul, ol {
+    padding-left: 1.5em;
+    margin: 0 0 1.25em;
 
     li {
-      line-height: 1.5em;
+      line-height: 1.75;
     }
 
     li + li {
-      margin-top: 0.25em;
+      margin-top: 0.35em;
+    }
+
+    // Nested lists
+    ul, ol {
+      margin: 0.35em 0;
     }
   }
 
-  p {
-    line-height: 1.75em;
+  ul {
+    list-style: disc;
+
+    ul {
+      list-style: circle;
+    }
   }
+
+  ol {
+    list-style: decimal;
+  }
+
+  // ============================================
+  // Inline code
+  // ============================================
 
   code {
-    padding: 0.2em 0.35em;
-    background-color: var(--bg-code-color);
-    font-size: 0.85rem;
-    font-family: 'IBM Plex Mono', Consolas, 'Andale Mono WT', 'Andale Mono',
-      'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
-      'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco,
-      'Courier New', Courier, monospace;
-    border-radius: 3px;
+    padding: 0.15em 0.4em;
+    font-family: var(--x-font-mono);
+    font-size: 0.85em;
+    background-color: var(--x-bg-code);
+    border-radius: 4px;
+    word-break: break-word;
   }
 
+  // ============================================
+  // Code blocks (expressive-code)
+  // ============================================
+
   .expressive-code {
-    margin: 1em 0;
+    margin: 1.5em 0;
+    border-radius: 8px;
 
     .frame {
       box-shadow: none !important;
     }
 
     code {
-      line-height: normal !important;
+      padding: 0;
+      background-color: transparent;
+      border-radius: 0;
+      font-size: 0.85rem;
+      line-height: 1.7 !important;
+    }
+
+    pre {
+      border-radius: 8px;
     }
 
     button {
@@ -99,36 +159,101 @@
     }
   }
 
+  // ============================================
+  // Blockquote
+  // ============================================
+
+  blockquote {
+    margin: 1.5em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid var(--x-primary);
+    background-color: var(--x-hover);
+    border-radius: 0 6px 6px 0;
+    color: var(--x-font-sub);
+
+    p {
+      margin: 0.5em 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ============================================
+  // Horizontal rule
+  // ============================================
+
+  hr {
+    margin: 2em 0;
+    border: none;
+    border-top: 1px solid var(--x-border);
+  }
+
+  // ============================================
+  // Images
+  // ============================================
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 1.5em 0;
+    border: 1px solid var(--x-border);
+    border-radius: 8px;
+  }
+
+  // ============================================
+  // Table
+  // ============================================
+
   table {
-    border-spacing: 0;
-    border-collapse: collapse;
     display: block;
     width: max-content;
     max-width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    overflow: auto;
+    margin: 1.5em 0;
+    border-collapse: collapse;
+    overflow-x: auto;
+    font-size: 0.9em;
 
-    thead {
-      border-bottom: 1px dashed var(--bg-code-color);
+    th, td {
+      padding: 10px 16px;
+      border: 1px solid var(--x-border);
+      text-align: left;
     }
 
     th {
-      padding-bottom: 12px;
+      font-weight: 600;
+      background-color: var(--x-hover);
     }
 
-    td {
-      padding-top: 12px;
-
-      code {
-        text-wrap: nowrap;
-      }
-
-      & + td {
-        padding-left: 8px;
-      }
+    tr:hover td {
+      background-color: var(--x-hover);
     }
+  }
+
+  // ============================================
+  // Task list (checkbox)
+  // ============================================
+
+  .contains-task-list {
+    list-style: none;
+    padding-left: 0.5em;
+
+    input[type="checkbox"] {
+      margin-right: 0.5em;
+      accent-color: var(--x-primary);
+    }
+  }
+
+  // ============================================
+  // Footnotes
+  // ============================================
+
+  .footnotes {
+    margin-top: 3em;
+    padding-top: 1em;
+    border-top: 1px solid var(--x-border);
+    font-size: 0.875em;
+    color: var(--x-font-sub);
   }
 }

@@ -4,7 +4,7 @@ import BannerCover from "@comp/blog/BannerCover.astro";
 import ToolBar from "@comp/ToolBar.astro";
 import Toc from "@comp/blog/Toc.astro";
 
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 // Styles
@@ -18,21 +18,27 @@ export async function getStaticPaths() {
   const posts = await getCollection("Posts");
 
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
-const { title, cover, date, tags } = entry.data;
+const { Content, headings } = await render(entry);
+const { title, cover, date, tags, desc } = entry.data;
 ---
 
-<DefaultLayout>
+<DefaultLayout title={title} description={desc}>
   <ToolBar />
 
   <BannerCover data={{ cover, date }} />
   <div class="wrapper">
+    <a class="back-link" href="/blogs">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      返回文章列表
+    </a>
     <Toc data={headings} />
 
     <article class="markdown-body">
@@ -47,17 +53,30 @@ const { title, cover, date, tags } = entry.data;
 </DefaultLayout>
 
 <style lang="scss">
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: var(--x-font-sub);
+  font-size: 14px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--x-primary);
+  }
+}
+
 .wrapper {
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 64px;
+  padding: 64px 32px;
 
   @media (max-width: 768px) {
     padding: 32px 24px;
   }
 
   .markdown-body {
-    max-width: 800px;
     overflow: hidden;
   }
 }
@@ -67,7 +86,7 @@ const { title, cover, date, tags } = entry.data;
   align-items: center;
   padding-bottom: 16px;
   font-size: 12px;
-  color: var(--font-subtitle-color);
+  color: var(--x-font-sub);
   overflow: hidden;
 
   .date {
@@ -79,7 +98,7 @@ const { title, cover, date, tags } = entry.data;
     margin-right: 12px;
     padding: 4px 0;
     text-transform: uppercase;
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--x-border);
     transition: all 0.2s;
     cursor: pointer;
 
@@ -88,7 +107,7 @@ const { title, cover, date, tags } = entry.data;
     }
 
     &:hover {
-      color: var(--primary);
+      color: var(--x-primary);
       border-bottom: 1px solid;
     }
   }
