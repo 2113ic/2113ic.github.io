@@ -7,7 +7,7 @@ const stylePath = fileURLToPath(new URL('./src/styles', import.meta.url))
 const utils = `@use '${stylePath.replace(/\\/g, '/')}/utils' as *;`
 
 export default defineConfig({
-  site: 'https://2113ic.github.io/',
+  site: 'http://2113ic.fun/',
   compressHTML: true,
   integrations: [
     expressiveCode({ themes: ['nord'] }),
