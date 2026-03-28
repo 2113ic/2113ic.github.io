@@ -1,5 +1,5 @@
 ---
-title: '我的Git学习笔记'
+title: '我的 Git 学习笔记'
 date : '2023-4-28'
 tags : ['Git', 'Notes']
 desc : '狂写代码一时爽，git commit 火葬场。经历两次丢失代码的痛苦后，我决定要好好学习一下git……'
