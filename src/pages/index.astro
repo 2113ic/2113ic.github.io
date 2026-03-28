@@ -13,9 +13,6 @@ const { name, info } = config
 <DefaultLayout>
   <ToolBar />
   <header>
-    <div class="avatar">
-      <img src="/logo.png" alt={name} width="72" height="72" />
-    </div>
     <h1 class="name">{name}</h1>
     <div class="info">{info}</div>
     <FindMe />
@@ -30,14 +27,6 @@ const { name, info } = config
 <style>
 .avatar {
   margin-bottom: 20px;
-}
-
-.avatar img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid var(--x-bg-card);
-  box-shadow: var(--x-card-shadow), 0 0 0 1px var(--x-border);
 }
 
 .name {
