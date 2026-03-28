@@ -83,13 +83,10 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   </ul>
 </aside>
 
-{/* Desktop: scroll spy + visibility */}
+{/* Desktop: scroll spy */}
 <script>
-  const desktopToc = document.querySelector('.toc-desktop') as HTMLElement
-  if (!desktopToc) throw new Error('toc-desktop not found')
-
-  const links = desktopToc.querySelectorAll<HTMLAnchorElement>('.toc-item a')
-  const articleNode = document.querySelector('.markdown-body') as HTMLElement
+  const desktopToc = document.querySelector('.toc-desktop') as HTMLElement | null
+  const links = desktopToc?.querySelectorAll<HTMLAnchorElement>('.toc-item a')
 
   update()
   let raf: number | null
@@ -102,13 +99,8 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   })
 
   function update() {
-    // Show TOC only when article is in view
-    const show = articleNode.getBoundingClientRect().top <= 120
-    desktopToc.classList.toggle('is-visible', show)
+    if (!links) return
 
-    if (!show) return
-
-    // Update active heading
     let current: HTMLElement | null = null
     for (const link of links) {
       const id = decodeURIComponent(link.hash.slice(1))
@@ -185,21 +177,12 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 
   @media (min-width: 1200px) {
     display: block;
-    position: fixed;
+    position: sticky;
     top: 100px;
-    left: calc(50% + 370px);
-    width: 200px;
     max-height: calc(100vh - 140px);
-    overflow-y: auto;
-    border-left: 2px solid var(--x-border);
     color: var(--x-font-sub);
     font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.2s;
-
-    &.is-visible {
-      opacity: 1;
-    }
+    overflow-y: auto;
 
     &::-webkit-scrollbar {
       width: 3px;
@@ -215,7 +198,6 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 
 .toc-desktop__title {
   margin: 0 0 8px;
-  padding-left: 14px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
