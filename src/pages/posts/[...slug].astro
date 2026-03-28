@@ -70,7 +70,7 @@ const { title, date, tags, desc } = entry.data;
 .wrapper {
   --post-width: 800px;
   --toc-width: 200px;
-  --toc-gap: 20px;
+  --toc-gap: 0px;
 
   max-width: var(--post-width);
   margin: 0 auto;
@@ -92,6 +92,7 @@ const { title, date, tags, desc } = entry.data;
 .mate-wrapper {
   display: flex;
   align-items: center;
+  margin-top: 8px;
   padding-bottom: 16px;
   font-size: 12px;
   color: var(--x-font-sub);
@@ -104,7 +105,7 @@ const { title, date, tags, desc } = entry.data;
 
   .tag {
     margin-right: 12px;
-    padding: 4px 0;
+    padding: 2px 0;
     text-transform: uppercase;
     border-bottom: 1px dashed var(--x-border);
     transition: all 0.2s;
