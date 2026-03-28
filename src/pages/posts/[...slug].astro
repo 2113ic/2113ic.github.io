@@ -68,7 +68,11 @@ const { title, date, tags, desc } = entry.data;
 }
 
 .wrapper {
-  max-width: 1180px;
+  --post-width: 800px;
+  --toc-width: 200px;
+  --toc-gap: 20px;
+
+  max-width: var(--post-width);
   margin: 0 auto;
   padding: 0 32px 64px;
 
@@ -78,39 +82,10 @@ const { title, date, tags, desc } = entry.data;
 }
 
 .post-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @media (min-width: 1200px) {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 220px;
-    column-gap: clamp(32px, 4vw, 56px);
-    align-items: start;
-  }
+  position: relative;
 
   .markdown-body {
-    min-width: 0;
     overflow: hidden;
-
-    @media (min-width: 1200px) {
-      grid-column: 1;
-      grid-row: 1;
-      max-width: 900px;
-    }
-  }
-
-  :global(.toc-desktop) {
-    @media (min-width: 1200px) {
-      grid-column: 2;
-      grid-row: 1;
-    }
-  }
-
-  :global(.toc-mobile) {
-    @media (max-width: 1199px) {
-      order: -1;
-    }
   }
 }
 

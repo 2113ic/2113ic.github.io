@@ -10,6 +10,7 @@ const tocs = genMarkdownToc(data)
 
 function genMarkdownToc(headings: MarkdownHeading[]) {
   const shallowHeadings = headings.filter(({ depth }) => depth > 1 && depth < 4)
+
   const addToToc = (toc: TocItem[], heading: MarkdownHeading) => {
     const lastItem = toc[toc.length - 1]
 
@@ -29,30 +30,30 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 }
 ---
 
-{/* Desktop TOC — fixed sidebar in right margin */}
 <nav class="toc-desktop">
-  <p class="toc-desktop__title">目录</p>
-  <ul class="toc-list">
-    {
-      tocs.map((parent) => (
-        <li class="toc-item">
-          <a href={'#'.concat(parent.slug)}>{parent.text}</a>
-          {parent.children.length > 0 && (
-            <ul class="toc-list">
-              {parent.children.map((child) => (
-                <li class="toc-item">
-                  <a href={'#'.concat(child.slug)}>{child.text}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))
-    }
-  </ul>
+  <div class="toc-desktop__inner">
+    <p class="toc-desktop__title">目录</p>
+    <ul class="toc-list">
+      {
+        tocs.map((parent) => (
+          <li class="toc-item">
+            <a href={'#'.concat(parent.slug)}>{parent.text}</a>
+            {parent.children.length > 0 && (
+              <ul class="toc-list">
+                {parent.children.map((child) => (
+                  <li class="toc-item">
+                    <a href={'#'.concat(child.slug)}>{child.text}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </nav>
 
-{/* Mobile TOC — collapsible, floats on scroll */}
 <aside class="toc-mobile">
   <div class="toc-mobile__title">
     <span>目录</span>
@@ -83,13 +84,13 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   </ul>
 </aside>
 
-{/* Desktop: scroll spy */}
 <script>
   const desktopToc = document.querySelector('.toc-desktop') as HTMLElement | null
   const links = desktopToc?.querySelectorAll<HTMLAnchorElement>('.toc-item a')
 
   update()
   let raf: number | null
+
   window.addEventListener('scroll', () => {
     if (raf) return
     raf = requestAnimationFrame(() => {
@@ -120,7 +121,6 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   }
 </script>
 
-{/* Mobile: toggle + float on scroll */}
 <script>
   const mobileToc = document.querySelector('.toc-mobile') as HTMLElement
   if (!mobileToc) throw new Error('toc-mobile not found')
@@ -171,7 +171,6 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 </script>
 
 <style lang="scss" is:global>
-/* ===== Desktop TOC ===== */
 .toc-desktop {
   display: none;
 
@@ -179,10 +178,24 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
     display: block;
     position: sticky;
     top: 100px;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    overflow: visible;
+  }
+}
+
+.toc-desktop__inner {
+  @media (min-width: 1200px) {
+    position: absolute;
+    top: 0;
+    left: calc(var(--post-width) + var(--toc-gap));
+    width: var(--toc-width);
     max-height: calc(100vh - 140px);
-    color: var(--x-font-sub);
-    font-size: 0.8rem;
+    padding: 14px 0 0 18px;
     overflow-y: auto;
+    color: var(--x-font-sub);
+    font-size: 0.85rem;
 
     &::-webkit-scrollbar {
       width: 3px;
@@ -197,7 +210,7 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
 }
 
 .toc-desktop__title {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -206,7 +219,6 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   opacity: 0.7;
 }
 
-/* ===== Mobile TOC ===== */
 .toc-mobile {
   display: block;
   border: 1px solid var(--x-border);
@@ -250,9 +262,13 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
       padding: 6px;
       padding-left: 0;
 
-      span { display: none; }
+      span {
+        display: none;
+      }
 
-      svg { transform: rotate(90deg); }
+      svg {
+        transform: rotate(90deg);
+      }
     }
 
     &:hover {
@@ -275,8 +291,13 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
         overflow-y: auto;
       }
 
-      .toc-mobile__title span { display: inline; }
-      .toc-mobile__title svg { transform: rotate(180deg); }
+      .toc-mobile__title span {
+        display: inline;
+      }
+
+      .toc-mobile__title svg {
+        transform: rotate(180deg);
+      }
     }
   }
 }
@@ -298,7 +319,6 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   transform: rotate(180deg);
 }
 
-/* ===== Shared ===== */
 .toc-list {
   list-style: none;
   margin: 0;
@@ -326,6 +346,15 @@ function genMarkdownToc(headings: MarkdownHeading[]) {
   &.active {
     color: var(--x-primary);
     font-weight: 500;
+  }
+}
+
+@media (min-width: 1200px) {
+  .toc-desktop .toc-item a {
+    padding-left: 0;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 }
 </style>
