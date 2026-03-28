@@ -42,16 +42,9 @@ export default defineConfig({
       label: 'Github',
     },
     {
-      url: links.twitter,
-      icon: icons.twitter,
-      label: 'Twitter',
-      background: '#00acee',
-    },
-    {
       url: links.figma,
       icon: icons.figma,
       label: 'Figma',
-      background: '#f7c104',
     },
   ],
   projects: [
